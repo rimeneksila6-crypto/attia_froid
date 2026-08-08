@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Attia Froid | Tableau de Bord Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=Space+Mono&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Montserrat:wght@100..900&amp;family=Space+Mono:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(22, 22, 22, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .cyan-glow:focus {
+            box-shadow: 0 0 10px rgba(46, 196, 224, 0.4);
+        }
+        body {
+            background-color: #0A0A0A;
+            color: #e5e2e1;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error": "#ffb4ab",
+                        "on-error": "#690005",
+                        "on-secondary": "#373100",
+                        "surface-dim": "#131313",
+                        "secondary-container": "#e5d100",
+                        "primary-fixed-dim": "#4cd7f4",
+                        "on-primary-fixed": "#001f26",
+                        "on-secondary-container": "#625900",
+                        "inverse-on-surface": "#313030",
+                        "on-primary": "#00363f",
+                        "secondary-fixed": "#fae527",
+                        "error-container": "#93000a",
+                        "outline": "#869397",
+                        "on-primary-fixed-variant": "#004e5b",
+                        "surface-container-highest": "#353534",
+                        "surface-tint": "#4cd7f4",
+                        "tertiary": "#cfcfd0",
+                        "on-surface-variant": "#bcc9cd",
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "on-primary-container": "#004d5a",
+                        "on-secondary-fixed-variant": "#4f4700",
+                        "tertiary-container": "#b3b4b4",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "surface-bright": "#3a3939",
+                        "surface": "#131313",
+                        "primary-container": "#2ec4e0",
+                        "surface-container-low": "#1c1b1b",
+                        "on-tertiary-container": "#444646",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary": "#2f3131",
+                        "primary": "#57e0fd",
+                        "background": "#131313",
+                        "inverse-primary": "#006879",
+                        "primary-fixed": "#a8edff",
+                        "secondary-fixed-dim": "#dcc800",
+                        "secondary": "#ffed66",
+                        "inverse-surface": "#e5e2e1",
+                        "surface-container": "#201f1f",
+                        "on-background": "#e5e2e1",
+                        "surface-container-high": "#2a2a2a",
+                        "on-secondary-fixed": "#201c00",
+                        "outline-variant": "#3c494c",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "on-surface": "#e5e2e1",
+                        "surface-variant": "#353534",
+                        "surface-container-lowest": "#0e0e0e",
+                        "tertiary-fixed": "#e2e2e2"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "margin-desktop": "64px",
+                        "base": "8px",
+                        "container-max": "1440px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "display-lg": ["Montserrat"],
+                        "label-mono": ["Space Mono"],
+                        "button-text": ["Montserrat"],
+                        "body-lg": ["Inter"],
+                        "display-lg-mobile": ["Montserrat"],
+                        "headline-md": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "label-mono": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "400"}],
+                        "button-text": ["14px", {"lineHeight": "1", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "display-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "800"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+          min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-surface overflow-x-hidden">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/60 dark:bg-surface/60 backdrop-blur-md border-b border-white/10 shadow-[0_40px_40px_0_rgba(0,0,0,0.3)]">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop h-16 w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary cursor-pointer active:scale-95 transition-transform" data-icon="menu">menu</span>
+<h1 class="font-display-lg text-headline-md text-primary tracking-tighter border-t-2 border-primary">AF</h1>
+</div>
+<div class="hidden md:flex gap-8 items-center h-full">
+<nav class="flex gap-6 h-full items-center">
+<a class="font-label-mono text-label-mono text-primary border-b-2 border-primary py-2 transition-colors duration-200" href="#">TABLEAU DE BORD</a>
+<a class="font-label-mono text-label-mono text-on-surface-variant hover:text-white transition-colors duration-200" href="#">ANALYSES</a>
+<a class="font-label-mono text-label-mono text-on-surface-variant hover:text-white transition-colors duration-200" href="#">LOGS</a>
+</nav>
+<div class="flex items-center gap-4 border-l border-white/10 pl-6">
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer" data-icon="notifications">notifications</span>
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold text-xs">AD</div>
+</div>
+</div>
+<span class="md:hidden material-symbols-outlined text-primary" data-icon="dark_mode">dark_mode</span>
+</div>
+</header>
+<!-- NavigationDrawer (Sidebar) -->
+<aside class="fixed inset-y-0 left-0 z-[60] hidden md:flex flex-col h-full w-72 rounded-r-none bg-surface-container border-r border-white/5 shadow-2xl transition-transform transform -translate-x-full lg:translate-x-0" id="sidebar">
+<div class="p-8">
+<h2 class="font-display-lg text-primary text-xl mb-12">Secteurs</h2>
+<nav class="space-y-2">
+<div class="flex items-center gap-4 bg-primary/10 text-primary border-l-4 border-primary px-4 py-3 cursor-pointer transition-colors">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-body-md text-body-md">Vue d'ensemble</span>
+</div>
+<div class="flex items-center gap-4 text-on-surface-variant px-4 py-3 hover:bg-white/5 cursor-pointer transition-all">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="font-body-md text-body-md">Gestion Produits</span>
+</div>
+<div class="flex items-center gap-4 text-on-surface-variant px-4 py-3 hover:bg-white/5 cursor-pointer transition-all">
+<span class="material-symbols-outlined" data-icon="request_quote">request_quote</span>
+<span class="font-body-md text-body-md">Devis</span>
+</div>
+<div class="flex items-center gap-4 text-on-surface-variant px-4 py-3 hover:bg-white/5 cursor-pointer transition-all">
+<span class="material-symbols-outlined" data-icon="reviews">reviews</span>
+<span class="font-body-md text-body-md">Avis Clients</span>
+</div>
+<div class="flex items-center gap-4 text-on-surface-variant px-4 py-3 hover:bg-white/5 cursor-pointer transition-all">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-body-md text-body-md">Paramètres</span>
+</div>
+</nav>
+</div>
+<div class="mt-auto p-8 border-t border-white/5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-container-highest border border-white/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="support_agent">support_agent</span>
+</div>
+<div>
+<p class="text-xs font-label-mono text-on-surface-variant uppercase">Accès Admin</p>
+<p class="text-sm font-semibold">Support Technique</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="pt-24 pb-20 px-margin-mobile md:px-margin-desktop lg:ml-72 min-h-screen">
+<div class="max-w-container-max mx-auto">
+<!-- Welcome Header -->
+<div class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<h2 class="font-display-lg text-display-lg-mobile md:text-headline-md text-white">Console d'Administration</h2>
+<p class="font-body-md text-on-surface-variant mt-2 max-w-xl">Bienvenue sur l'interface de contrôle technique Attia Froid. Gérez vos inventaires de réfrigération industrielle et vos flux de maintenance.</p>
+</div>
+<div class="flex gap-4">
+<button class="bg-primary text-on-primary h-12 px-6 flex items-center gap-2 font-button-text hover:bg-white transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+                    Ajouter un produit
+                </button>
+<button class="border border-primary text-primary h-12 px-6 flex items-center gap-2 font-button-text hover:bg-primary/10 transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="rate_review">rate_review</span>
+                    Modérer Avis
+                </button>
+</div>
+</div>
+<!-- KPI Overview: Technical Cards -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter mb-20">
+<!-- Card 1 -->
+<div class="glass-card p-6 flex flex-col justify-between min-h-[160px] group hover:border-primary/50 transition-all duration-300">
+<div class="flex justify-between items-start">
+<span class="font-label-mono text-xs text-on-surface-variant uppercase tracking-widest">Total Produits</span>
+<span class="material-symbols-outlined text-primary/40 group-hover:text-primary" data-icon="kitchen">kitchen</span>
+</div>
+<div>
+<div class="flex items-baseline gap-2 mt-4">
+<span class="font-display-lg text-headline-md text-white">1,248</span>
+<span class="text-green-400 font-label-mono text-xs">+12%</span>
+</div>
+<div class="w-full bg-white/5 h-1 mt-4 relative overflow-hidden">
+<div class="absolute top-0 left-0 h-full bg-primary w-3/4"></div>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="glass-card p-6 flex flex-col justify-between min-h-[160px] group hover:border-primary/50 transition-all duration-300">
+<div class="flex justify-between items-start">
+<span class="font-label-mono text-xs text-on-surface-variant uppercase tracking-widest">Nouveaux Devis</span>
+<span class="material-symbols-outlined text-secondary/40 group-hover:text-secondary" data-icon="assignment_late">assignment_late</span>
+</div>
+<div>
+<div class="flex items-baseline gap-2 mt-4">
+<span class="font-display-lg text-headline-md text-white">42</span>
+<span class="text-secondary font-label-mono text-xs">Urgent</span>
+</div>
+<p class="text-xs text-on-surface-variant font-body-md mt-2">Délai moyen: 4h 12m</p>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="glass-card p-6 flex flex-col justify-between min-h-[160px] group hover:border-primary/50 transition-all duration-300">
+<div class="flex justify-between items-start">
+<span class="font-label-mono text-xs text-on-surface-variant uppercase tracking-widest">Avis en attente</span>
+<span class="material-symbols-outlined text-error/40 group-hover:text-error" data-icon="feedback">feedback</span>
+</div>
+<div>
+<div class="flex items-baseline gap-2 mt-4">
+<span class="font-display-lg text-headline-md text-white">18</span>
+<span class="text-on-surface-variant font-label-mono text-xs">Aujourd'hui</span>
+</div>
+<div class="flex gap-1 mt-4">
+<div class="w-2 h-2 rounded-full bg-green-500"></div>
+<div class="w-2 h-2 rounded-full bg-green-500"></div>
+<div class="w-2 h-2 rounded-full bg-yellow-500"></div>
+<div class="w-2 h-2 rounded-full bg-surface-container-highest"></div>
+<div class="w-2 h-2 rounded-full bg-surface-container-highest"></div>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="glass-card p-6 flex flex-col justify-between min-h-[160px] group hover:border-primary/50 transition-all duration-300">
+<div class="flex justify-between items-start">
+<span class="font-label-mono text-xs text-on-surface-variant uppercase tracking-widest">Nouveaux Arrivages</span>
+<span class="material-symbols-outlined text-primary/40 group-hover:text-primary" data-icon="local_shipping">local_shipping</span>
+</div>
+<div>
+<div class="flex items-baseline gap-2 mt-4">
+<span class="font-display-lg text-headline-md text-white">5</span>
+<span class="text-primary font-label-mono text-xs">Arrivée</span>
+</div>
+<p class="text-xs text-on-surface-variant font-body-md mt-2">Prévu pour: 14:00</p>
+</div>
+</div>
+</section>
+<!-- Bento Layout for Activity & Actions -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Activity Feed (Main Section) -->
+<div class="lg:col-span-8 flex flex-col gap-6">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-md text-white">Flux d'activité récent</h3>
+<a class="text-primary font-label-mono text-xs uppercase hover:underline" href="#">Voir tout</a>
+</div>
+<div class="space-y-4">
+<!-- Activity Item 1 -->
+<div class="bg-surface-container-low border-l-2 border-primary p-5 flex items-center justify-between hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-6">
+<div class="w-12 h-12 bg-surface-container-highest flex items-center justify-center rounded">
+<span class="material-symbols-outlined text-primary" data-icon="description">description</span>
+</div>
+<div>
+<h4 class="font-semibold text-white">Nouveau Devis #DE-4092</h4>
+<p class="text-sm text-on-surface-variant">Hôtel Regency Hammamet • Équipement Cuisine Industrielle</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm font-label-mono text-primary">€4,250.00</p>
+<p class="text-xs text-on-surface-variant">Il y a 14 min</p>
+</div>
+</div>
+<!-- Activity Item 2 -->
+<div class="bg-surface-container-low border-l-2 border-secondary p-5 flex items-center justify-between hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-6">
+<div class="w-12 h-12 bg-surface-container-highest flex items-center justify-center rounded">
+<span class="material-symbols-outlined text-secondary" data-icon="grade">grade</span>
+</div>
+<div>
+<h4 class="font-semibold text-white">Avis Client à Modérer</h4>
+<p class="text-sm text-on-surface-variant">M. Ahmed K. • "Installation rapide et efficace"</p>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="w-8 h-8 flex items-center justify-center rounded border border-white/10 text-on-surface-variant hover:text-green-400">
+<span class="material-symbols-outlined text-sm" data-icon="check">check</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-white/10 text-on-surface-variant hover:text-error">
+<span class="material-symbols-outlined text-sm" data-icon="close">close</span>
+</button>
+</div>
+</div>
+<!-- Activity Item 3 -->
+<div class="bg-surface-container-low border-l-2 border-white/20 p-5 flex items-center justify-between hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-6">
+<div class="w-12 h-12 bg-surface-container-highest flex items-center justify-center rounded">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="update">update</span>
+</div>
+<div>
+<h4 class="font-semibold text-white">Mise à jour Inventaire</h4>
+<p class="text-sm text-on-surface-variant">Réfrigérateur Triple Porte Modèle X-200 • +5 unités</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-xs text-on-surface-variant">Il y a 2h</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Sidebar Content (Secondary Section) -->
+<div class="lg:col-span-4 flex flex-col gap-8">
+<!-- Search Widget -->
+<div class="glass-card p-6">
+<h4 class="font-label-mono text-xs uppercase text-on-surface-variant mb-4">Recherche Technique</h4>
+<div class="relative">
+<input class="w-full bg-surface-container-highest border-none focus:ring-1 focus:ring-primary py-3 pl-10 text-sm font-body-md text-white rounded" placeholder="Référence produit, Client..." type="text"/>
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm" data-icon="search">search</span>
+</div>
+</div>
+<!-- System Status Card -->
+<div class="bg-surface-container-highest p-6 relative overflow-hidden group">
+<div class="relative z-10">
+<div class="flex items-center justify-between mb-6">
+<h4 class="font-headline-md text-sm text-white">État du Système</h4>
+<span class="flex h-2 w-2 rounded-full bg-green-500 animate-pulse"></span>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-center text-xs">
+<span class="text-on-surface-variant">Base de données</span>
+<span class="text-primary font-label-mono">OPÉRATIONNEL</span>
+</div>
+<div class="flex justify-between items-center text-xs">
+<span class="text-on-surface-variant">Serveur de Devis</span>
+<span class="text-primary font-label-mono">12ms LATENCE</span>
+</div>
+<div class="flex justify-between items-center text-xs">
+<span class="text-on-surface-variant">Stockage Cloud</span>
+<span class="text-secondary font-label-mono">82% UTILISÉ</span>
+</div>
+</div>
+</div>
+<!-- Decorative background element -->
+<div class="absolute -bottom-10 -right-10 w-32 h-32 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-colors"></div>
+</div>
+<!-- Quick Link Catalog -->
+<div class="glass-card p-6">
+<h4 class="font-label-mono text-xs uppercase text-on-surface-variant mb-4">Raccourcis Secteurs</h4>
+<div class="grid grid-cols-2 gap-2">
+<button class="flex items-center gap-2 text-xs p-3 bg-white/5 hover:bg-primary/20 hover:text-primary transition-all rounded">
+<span class="material-symbols-outlined text-sm" data-icon="coffee">coffee</span> Cafétéria
+                        </button>
+<button class="flex items-center gap-2 text-xs p-3 bg-white/5 hover:bg-primary/20 hover:text-primary transition-all rounded">
+<span class="material-symbols-outlined text-sm" data-icon="bakery_dining">bakery_dining</span> Boulangerie
+                        </button>
+<button class="flex items-center gap-2 text-xs p-3 bg-white/5 hover:bg-primary/20 hover:text-primary transition-all rounded">
+<span class="material-symbols-outlined text-sm" data-icon="restaurant">restaurant</span> Boucherie
+                        </button>
+<button class="flex items-center gap-2 text-xs p-3 bg-white/5 hover:bg-primary/20 hover:text-primary transition-all rounded">
+<span class="material-symbols-outlined text-sm" data-icon="hotel">hotel</span> CHR
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest border-t border-white/5">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop py-20 w-full max-w-container-max mx-auto">
+<div>
+<h3 class="font-display-lg text-headline-md text-primary mb-6">AF</h3>
+<p class="font-body-md text-on-surface-variant">Solutions de réfrigération haute performance pour les professionnels de l'agroalimentaire et de l'hôtellerie.</p>
+</div>
+<div>
+<h4 class="font-label-mono text-label-mono text-white mb-6 uppercase tracking-widest">Secteurs</h4>
+<ul class="space-y-4 font-body-md text-on-surface-variant">
+<li><a class="hover:text-primary transition-colors" href="#">Cafétéria</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Boulangerie</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Hospitalité</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-mono text-label-mono text-white mb-6 uppercase tracking-widest">Support</h4>
+<ul class="space-y-4 font-body-md text-on-surface-variant">
+<li><a class="hover:text-primary transition-colors" href="#">Support Technique</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Pièces Détachées</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Garantie</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-mono text-label-mono text-white mb-6 uppercase tracking-widest">Compte</h4>
+<p class="font-body-md text-on-surface-variant mb-6">© 2024 Attia Froid. Kélibia, Tunisie.</p>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer" data-icon="language">language</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer" data-icon="shield">shield</span>
+</div>
+</div>
+</div>
+</footer>
+<!-- Simple interaction script -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const menuBtn = document.querySelector('[data-icon="menu"]');
+        const sidebar = document.getElementById('sidebar');
+        
+        if (menuBtn && sidebar) {
+            menuBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                sidebar.classList.toggle('-translate-x-full');
+            });
+            
+            document.addEventListener('click', (e) => {
+                if (!sidebar.contains(e.target) && !menuBtn.contains(e.target)) {
+                    sidebar.classList.add('-translate-x-full');
+                }
+            });
+        }
+    });
+</script>
+</body></html>

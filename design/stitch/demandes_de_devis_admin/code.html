@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Attia Froid | Gestion des Devis</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=Space+Mono&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed-variant": "#004e5b",
+                    "on-secondary-fixed": "#201c00",
+                    "on-background": "#e5e2e1",
+                    "inverse-primary": "#006879",
+                    "outline-variant": "#3c494c",
+                    "error": "#ffb4ab",
+                    "on-primary-container": "#004d5a",
+                    "surface-container": "#201f1f",
+                    "on-surface": "#e5e2e1",
+                    "on-secondary-fixed-variant": "#4f4700",
+                    "surface": "#131313",
+                    "surface-container-high": "#2a2a2a",
+                    "surface-variant": "#353534",
+                    "secondary-container": "#e5d100",
+                    "surface-bright": "#3a3939",
+                    "tertiary-fixed-dim": "#c6c6c7",
+                    "on-primary-fixed": "#001f26",
+                    "on-primary": "#00363f",
+                    "on-tertiary-fixed": "#1a1c1c",
+                    "secondary-fixed-dim": "#dcc800",
+                    "primary-fixed-dim": "#4cd7f4",
+                    "on-error": "#690005",
+                    "on-tertiary-container": "#444646",
+                    "on-secondary": "#373100",
+                    "inverse-on-surface": "#313030",
+                    "background": "#131313",
+                    "primary": "#57e0fd",
+                    "surface-container-lowest": "#0e0e0e",
+                    "on-error-container": "#ffdad6",
+                    "surface-dim": "#131313",
+                    "primary-fixed": "#a8edff",
+                    "secondary": "#ffed66",
+                    "surface-tint": "#4cd7f4",
+                    "surface-container-low": "#1c1b1b",
+                    "tertiary-container": "#b3b4b4",
+                    "surface-container-highest": "#353534",
+                    "inverse-surface": "#e5e2e1",
+                    "outline": "#869397",
+                    "primary-container": "#2ec4e0",
+                    "tertiary-fixed": "#e2e2e2",
+                    "on-tertiary-fixed-variant": "#454747",
+                    "on-secondary-container": "#625900",
+                    "secondary-fixed": "#fae527",
+                    "on-tertiary": "#2f3131",
+                    "on-surface-variant": "#bcc9cd",
+                    "tertiary": "#cfcfd0",
+                    "error-container": "#93000a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "container-max": "1440px",
+                    "margin-mobile": "16px",
+                    "base": "8px",
+                    "margin-desktop": "64px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "label-mono": ["Space Mono"],
+                    "body-lg": ["Inter"],
+                    "headline-md": ["Montserrat"],
+                    "display-lg": ["Montserrat"],
+                    "button-text": ["Montserrat"],
+                    "body-md": ["Inter"],
+                    "display-lg-mobile": ["Montserrat"]
+            },
+            "fontSize": {
+                    "label-mono": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "button-text": ["14px", {"lineHeight": "1", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "800"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(46, 196, 224, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #131313;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3c494c;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #57e0fd;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-primary selection:text-surface overflow-x-hidden">
+<!-- TopNavBar Navigation Shell -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-desktop h-20 bg-surface/80 backdrop-blur-xl border-t-2 border-primary border-b border-white/10 shadow-[0_40px_40px_0_rgba(0,0,0,0.3)]">
+<div class="flex items-center gap-8">
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary tracking-tighter uppercase">Attia Froid</h1>
+<div class="hidden md:flex gap-6 items-center">
+<a class="font-body-md text-primary border-b-2 border-primary pb-1 transition-all duration-300 ease-in-out" href="#">Depts.</a>
+<a class="font-body-md text-on-surface-variant hover:text-secondary hover:underline decoration-secondary underline-offset-4 transition-all duration-300 ease-in-out" href="#">Inventaire</a>
+<a class="font-body-md text-on-surface-variant hover:text-secondary hover:underline decoration-secondary underline-offset-4 transition-all duration-300 ease-in-out" href="#">Logistique</a>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative group">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer group-hover:text-primary transition-colors">notifications</span>
+<span class="absolute -top-1 -right-1 w-2 h-2 bg-secondary rounded-full"></span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors">settings</span>
+<button class="hidden lg:flex items-center gap-2 px-4 py-2 bg-primary-container text-on-primary-container font-button-text rounded-lg hover:bg-white transition-colors duration-300">
+                Support
+            </button>
+<div class="w-10 h-10 rounded-full border border-primary overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a corporate industrial administrator in a clean office environment. The subject is wearing a charcoal suit, set against a background of high-tech server racks with subtle cyan LED lighting. The style is sharp, corporate, and premium, maintaining the cool blue and deep black aesthetic of Attia Froid." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqd1PLGBw5AGp4xaUZV-S0rvlFA_a0iDyO52iHyc6g6bRR4IkXTC9PQLUJAuof954ZYJR_NsJg54ifaAx6Gtapt37DNdVxFvDQKsPa1eTgjBoaHM9nqyqHKogu8o9HQrud9sN2aAhCdGc35NU3fpYmev4Ewjo3oNAPruxlzZyMGXweCjozYdX7cKi25Z0Djgt7fwBTy-cDK22rmvXbQGAhwiXn1kudQNg84Do6oaZoFMmdwuVWu3wP"/>
+</div>
+</div>
+</header>
+<!-- SideNavBar Shell -->
+<aside class="fixed left-0 top-0 h-full w-64 border-r border-white/10 bg-surface-container flex flex-col pt-24 pb-8 z-40 hidden md:flex shadow-2xl">
+<div class="px-6 mb-8">
+<h2 class="font-headline-md text-on-surface">Arctic Precision</h2>
+<p class="font-label-mono text-xs text-on-surface-variant mt-1">Industrial Control v2.4</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="text-on-surface-variant hover:bg-surface-variant px-4 py-3 flex items-center gap-3 font-label-mono transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary">inventory_2</span>
+                Product Management
+            </a>
+<a class="text-on-surface-variant hover:bg-surface-variant px-4 py-3 flex items-center gap-3 font-label-mono transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary">conveyor_belt</span>
+                Stock Arrivals
+            </a>
+<a class="bg-primary-container text-on-primary-container font-bold border-l-4 border-primary px-4 py-3 flex items-center gap-3 font-label-mono" href="#">
+<span class="material-symbols-outlined">request_quote</span>
+                Quote Requests
+            </a>
+<a class="text-on-surface-variant hover:bg-surface-variant px-4 py-3 flex items-center gap-3 font-label-mono transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary">rate_review</span>
+                Review Moderation
+            </a>
+<a class="text-on-surface-variant hover:bg-surface-variant px-4 py-3 flex items-center gap-3 font-label-mono transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary">settings</span>
+                Settings
+            </a>
+</nav>
+<div class="px-4 mt-auto">
+<button class="w-full py-3 mb-6 bg-transparent border border-primary text-primary font-button-text hover:bg-primary hover:text-black transition-all active:scale-95">
+                Generate Report
+            </button>
+<div class="space-y-1">
+<a class="text-on-surface-variant hover:text-primary px-4 py-2 flex items-center gap-3 font-label-mono text-xs transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">sensors</span>
+                    System Status
+                </a>
+<a class="text-on-surface-variant hover:text-primary px-4 py-2 flex items-center gap-3 font-label-mono text-xs transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">logout</span>
+                    Logout
+                </a>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="md:pl-64 pt-24 min-h-screen">
+<div class="max-w-7xl mx-auto px-6 md:px-margin-desktop py-12">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+<div>
+<h2 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-2">Gestion des Devis</h2>
+<p class="text-on-surface-variant font-body-lg">Interface technique de supervision des demandes client Arctic Precision.</p>
+</div>
+<div class="flex gap-4">
+<div class="glass-panel p-4 flex items-center gap-4">
+<div class="text-right">
+<p class="font-label-mono text-[10px] uppercase text-on-surface-variant">Flux Actuel</p>
+<p class="font-label-mono text-primary text-xl">12 Demandes</p>
+</div>
+<div class="w-[2px] h-8 bg-primary/20"></div>
+<span class="material-symbols-outlined text-primary text-3xl">analytics</span>
+</div>
+</div>
+</div>
+<!-- Dashboard Filters -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap- gutter mb-10">
+<div class="md:col-span-3 flex flex-wrap gap-4">
+<div class="flex items-center bg-surface-container px-4 py-2 border border-white/5 group focus-within:border-primary transition-all">
+<span class="material-symbols-outlined text-on-surface-variant mr-3 group-focus-within:text-primary">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-on-surface placeholder:text-outline p-0 w-64 font-label-mono text-sm" placeholder="Rechercher un client..." type="text"/>
+</div>
+<button class="px-6 py-2 border border-primary text-primary font-button-text flex items-center gap-2 hover:bg-primary hover:text-black transition-all">
+<span class="material-symbols-outlined text-sm">filter_list</span>
+                        Filtres Avancés
+                    </button>
+</div>
+<div class="flex justify-end">
+<div class="bg-surface-container-high px-4 py-2 flex items-center gap-2 border-t-2 border-primary">
+<span class="material-symbols-outlined text-primary text-sm">schedule</span>
+<span class="font-label-mono text-xs uppercase">Dernière mise à jour: 14:02</span>
+</div>
+</div>
+</div>
+<!-- Main Quotes Grid / List -->
+<section class="space-y-6">
+<!-- Table Header (Desktop) -->
+<div class="hidden md:grid grid-cols-12 px-6 py-4 border-b border-white/10 font-label-mono text-xs text-on-surface-variant uppercase tracking-widest">
+<div class="col-span-3">Client</div>
+<div class="col-span-4">Produits Demandés</div>
+<div class="col-span-2">Date</div>
+<div class="col-span-2">Statut</div>
+<div class="col-span-1 text-right">Actions</div>
+</div>
+<!-- Row 1: Nouveau -->
+<div class="grid grid-cols-1 md:grid-cols-12 items-center px-6 py-8 bg-surface-container-low border border-white/5 hover:border-primary/50 transition-all duration-300 group relative">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary scale-y-0 group-hover:scale-y-100 transition-transform origin-top"></div>
+<div class="col-span-3 mb-4 md:mb-0">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 glass-panel flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">domain</span>
+</div>
+<div>
+<p class="font-headline-md text-lg text-on-surface">Hôtel Regency</p>
+<p class="font-label-mono text-[10px] text-on-surface-variant">REF: RF-2024-001</p>
+</div>
+</div>
+</div>
+<div class="col-span-4 mb-4 md:mb-0">
+<div class="flex flex-wrap gap-2">
+<span class="bg-surface-variant px-2 py-1 text-[11px] font-label-mono text-on-surface border-t border-primary/40">Chambre Froide Pro v2</span>
+<span class="bg-surface-variant px-2 py-1 text-[11px] font-label-mono text-on-surface border-t border-primary/40">Compresseur X-400</span>
+</div>
+</div>
+<div class="col-span-2 mb-4 md:mb-0">
+<p class="font-label-mono text-sm text-on-surface">24 Oct 2023</p>
+<p class="text-[10px] text-on-surface-variant">Il y a 2 heures</p>
+</div>
+<div class="col-span-2 mb-4 md:mb-0">
+<span class="inline-flex items-center px-3 py-1 bg-primary/10 text-primary border border-primary/20 rounded-full font-label-mono text-[10px] uppercase">
+<span class="status-dot bg-primary animate-pulse"></span> Nouveau
+                        </span>
+</div>
+<div class="col-span-1 text-right">
+<button class="p-2 hover:bg-primary-container hover:text-on-primary-container transition-colors rounded">
+<span class="material-symbols-outlined">open_in_new</span>
+</button>
+</div>
+</div>
+<!-- Row 2: Traité -->
+<div class="grid grid-cols-1 md:grid-cols-12 items-center px-6 py-8 bg-surface-container-low border border-white/5 hover:border-secondary/50 transition-all duration-300 group">
+<div class="col-span-3 mb-4 md:mb-0">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 glass-panel flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary">restaurant</span>
+</div>
+<div>
+<p class="font-headline-md text-lg text-on-surface">Le Gourmet Palace</p>
+<p class="font-label-mono text-[10px] text-on-surface-variant">REF: RF-2024-042</p>
+</div>
+</div>
+</div>
+<div class="col-span-4 mb-4 md:mb-0">
+<div class="flex flex-wrap gap-2">
+<span class="bg-surface-variant px-2 py-1 text-[11px] font-label-mono text-on-surface border-t border-secondary/40">Vitrine Réfrigérée Design</span>
+</div>
+</div>
+<div class="col-span-2 mb-4 md:mb-0">
+<p class="font-label-mono text-sm text-on-surface">22 Oct 2023</p>
+</div>
+<div class="col-span-2 mb-4 md:mb-0">
+<span class="inline-flex items-center px-3 py-1 bg-secondary/10 text-secondary border border-secondary/20 rounded-full font-label-mono text-[10px] uppercase">
+<span class="status-dot bg-secondary"></span> Traité
+                        </span>
+</div>
+<div class="col-span-1 text-right">
+<button class="p-2 hover:bg-secondary-container hover:text-on-secondary-container transition-colors rounded">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</div>
+</div>
+<!-- Row 3: Archivé -->
+<div class="grid grid-cols-1 md:grid-cols-12 items-center px-6 py-8 bg-surface-container-low border border-white/5 opacity-60 hover:opacity-100 transition-opacity group">
+<div class="col-span-3 mb-4 md:mb-0">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 glass-panel flex items-center justify-center">
+<span class="material-symbols-outlined text-outline">factory</span>
+</div>
+<div>
+<p class="font-headline-md text-lg text-on-surface">Logistique Nord</p>
+<p class="font-label-mono text-[10px] text-on-surface-variant">REF: RF-2023-998</p>
+</div>
+</div>
+</div>
+<div class="col-span-4 mb-4 md:mb-0">
+<div class="flex flex-wrap gap-2">
+<span class="bg-surface-variant px-2 py-1 text-[11px] font-label-mono text-on-surface">Système Split Industriel</span>
+</div>
+</div>
+<div class="col-span-2 mb-4 md:mb-0">
+<p class="font-label-mono text-sm text-on-surface">15 Oct 2023</p>
+</div>
+<div class="col-span-2 mb-4 md:mb-0">
+<span class="inline-flex items-center px-3 py-1 bg-surface-variant text-on-surface-variant border border-white/10 rounded-full font-label-mono text-[10px] uppercase">
+<span class="status-dot bg-outline"></span> Archivé
+                        </span>
+</div>
+<div class="col-span-1 text-right">
+<button class="p-2 hover:bg-surface-bright transition-colors rounded">
+<span class="material-symbols-outlined">archive</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Detail Modal Simulation (Glassmorphism Overlay Example) -->
+<div class="fixed inset-0 z-[60] flex items-center justify-center p-6 bg-black/60 backdrop-blur-sm pointer-events-none opacity-0 transition-opacity duration-300" id="detail-overlay">
+<div class="glass-panel max-w-2xl w-full p-8 relative translate-y-4 transition-transform duration-300">
+<button class="absolute top-4 right-4 text-on-surface-variant hover:text-white" onclick="toggleModal()">
+<span class="material-symbols-outlined">close</span>
+</button>
+<div class="border-l-4 border-primary pl-6 mb-8">
+<p class="font-label-mono text-xs text-primary uppercase mb-2">Détails de la demande</p>
+<h3 class="font-display-lg text-2xl text-on-surface">Hôtel Regency</h3>
+</div>
+<div class="grid grid-cols-2 gap-8 mb-10">
+<div class="space-y-4">
+<div>
+<label class="font-label-mono text-[10px] text-on-surface-variant uppercase">Contact</label>
+<p class="text-on-surface">Jean Dupont — Direction Technique</p>
+</div>
+<div>
+<label class="font-label-mono text-[10px] text-on-surface-variant uppercase">Localisation</label>
+<p class="text-on-surface">Nice, France</p>
+</div>
+</div>
+<div class="space-y-4">
+<div>
+<label class="font-label-mono text-[10px] text-on-surface-variant uppercase">Budget Estimé</label>
+<p class="text-secondary font-label-mono">15,400.00 €</p>
+</div>
+<div>
+<label class="font-label-mono text-[10px] text-on-surface-variant uppercase">Échéance</label>
+<p class="text-on-surface">Immédiat (Sous 15 jours)</p>
+</div>
+</div>
+</div>
+<div class="bg-black/40 p-4 mb-8">
+<h4 class="font-label-mono text-xs text-on-surface-variant uppercase mb-3">Notes Internes</h4>
+<p class="text-sm italic">"Client fidèle. Priorité haute pour le renouvellement du parc frigorifique du restaurant principal."</p>
+</div>
+<div class="flex gap-4">
+<button class="flex-1 bg-primary text-black py-4 font-button-text hover:bg-white transition-all uppercase tracking-widest">Générer le PDF</button>
+<button class="flex-1 border border-primary text-primary py-4 font-button-text hover:bg-primary/10 transition-all uppercase tracking-widest">Assigner Technicien</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Contextual FAB -->
+<button class="fixed bottom-8 right-8 w-14 h-14 bg-primary text-black rounded-full shadow-[0_0_20px_rgba(46,196,224,0.4)] flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-50 group" title="Nouveau Devis">
+<span class="material-symbols-outlined text-3xl">add</span>
+<span class="absolute right-16 bg-surface-container text-primary font-label-mono text-xs px-3 py-1 border border-primary/20 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">Nouveau Devis</span>
+</button>
+<script>
+        // Simple micro-interaction for the modal simulation
+        function toggleModal() {
+            const overlay = document.getElementById('detail-overlay');
+            const panel = overlay.querySelector('.glass-panel');
+            const isActive = overlay.classList.contains('opacity-100');
+
+            if (isActive) {
+                overlay.classList.replace('opacity-100', 'opacity-0');
+                overlay.classList.add('pointer-events-none');
+                panel.classList.add('translate-y-4');
+            } else {
+                overlay.classList.replace('opacity-0', 'opacity-100');
+                overlay.classList.remove('pointer-events-none');
+                panel.classList.remove('translate-y-4');
+            }
+        }
+
+        // Attach to the first row "open" button for demo
+        document.querySelectorAll('button').forEach(btn => {
+            if (btn.querySelector('span')?.textContent === 'open_in_new') {
+                btn.onclick = toggleModal;
+            }
+        });
+    </script>
+</body></html>

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Attia Froid - Paramètres Système</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Montserrat:wght@700;800&amp;family=Space+Mono&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed-variant": "#004e5b",
+                    "on-secondary-fixed": "#201c00",
+                    "on-background": "#e5e2e1",
+                    "inverse-primary": "#006879",
+                    "outline-variant": "#3c494c",
+                    "error": "#ffb4ab",
+                    "on-primary-container": "#004d5a",
+                    "surface-container": "#201f1f",
+                    "on-surface": "#e5e2e1",
+                    "on-secondary-fixed-variant": "#4f4700",
+                    "surface": "#131313",
+                    "surface-container-high": "#2a2a2a",
+                    "surface-variant": "#353534",
+                    "secondary-container": "#e5d100",
+                    "surface-bright": "#3a3939",
+                    "tertiary-fixed-dim": "#c6c6c7",
+                    "on-primary-fixed": "#001f26",
+                    "on-primary": "#00363f",
+                    "on-tertiary-fixed": "#1a1c1c",
+                    "secondary-fixed-dim": "#dcc800",
+                    "primary-fixed-dim": "#4cd7f4",
+                    "on-error": "#690005",
+                    "on-tertiary-container": "#444646",
+                    "on-secondary": "#373100",
+                    "inverse-on-surface": "#313030",
+                    "background": "#131313",
+                    "primary": "#57e0fd",
+                    "surface-container-lowest": "#0e0e0e",
+                    "on-error-container": "#ffdad6",
+                    "surface-dim": "#131313",
+                    "primary-fixed": "#a8edff",
+                    "secondary": "#ffed66",
+                    "surface-tint": "#4cd7f4",
+                    "surface-container-low": "#1c1b1b",
+                    "tertiary-container": "#b3b4b4",
+                    "surface-container-highest": "#353534",
+                    "inverse-surface": "#e5e2e1",
+                    "outline": "#869397",
+                    "primary-container": "#2ec4e0",
+                    "tertiary-fixed": "#e2e2e2",
+                    "on-tertiary-fixed-variant": "#454747",
+                    "on-secondary-container": "#625900",
+                    "secondary-fixed": "#fae527",
+                    "on-tertiary": "#2f3131",
+                    "on-surface-variant": "#bcc9cd",
+                    "tertiary": "#cfcfd0",
+                    "error-container": "#93000a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "container-max": "1440px",
+                    "margin-mobile": "16px",
+                    "base": "8px",
+                    "margin-desktop": "64px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "label-mono": ["Space Mono"],
+                    "body-lg": ["Inter"],
+                    "headline-md": ["Montserrat"],
+                    "display-lg": ["Montserrat"],
+                    "button-text": ["Montserrat"],
+                    "body-md": ["Inter"],
+                    "display-lg-mobile": ["Montserrat"]
+            },
+            "fontSize": {
+                    "label-mono": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "button-text": ["14px", {"lineHeight": "1", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "800"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(46, 196, 224, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .industrial-border {
+            border: 1px solid rgba(46, 196, 224, 0.2);
+        }
+        .industrial-border:focus-within {
+            border-color: #57e0fd;
+            box-shadow: 0 0 4px rgba(87, 224, 253, 0.4);
+        }
+        input:focus + label, input:not(:placeholder-shown) + label {
+            transform: translateY(-1.5rem) scale(0.85);
+            color: #57e0fd;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #131313;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #3c494c;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-primary/30 min-h-screen">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-desktop h-20 bg-surface/80 backdrop-blur-xl border-t-2 border-primary border-b border-white/10 shadow-[0_40px_40px_0_rgba(0,0,0,0.3)] transition-all duration-300 ease-in-out">
+<div class="flex items-center gap-8">
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary tracking-tighter">Attia Froid</h1>
+<div class="hidden md:flex gap-6">
+<a class="text-on-surface-variant hover:text-secondary hover:underline decoration-secondary underline-offset-4 transition-all" href="#">Tableau de Bord</a>
+<a class="text-on-surface-variant hover:text-secondary hover:underline decoration-secondary underline-offset-4 transition-all" href="#">Inventaire</a>
+<a class="text-primary border-b-2 border-primary pb-1" href="#">Paramètres</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary">notifications</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary">settings</button>
+<button class="hidden md:block bg-primary text-on-primary px-6 py-2 font-button-text text-button-text rounded-lg hover:bg-white transition-colors">Support</button>
+</div>
+</nav>
+<!-- SideNavBar (Hidden on Mobile) -->
+<aside class="fixed left-0 top-0 h-full hidden md:flex flex-col pt-24 pb-8 w-64 bg-surface-container border-r border-white/10 shadow-2xl z-40">
+<div class="px-6 mb-8">
+<h2 class="font-headline-md text-headline-md text-on-surface">Arctic Precision</h2>
+<p class="font-label-mono text-label-mono text-primary opacity-70">Industrial Control v2.4</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="text-on-surface-variant hover:bg-surface-variant px-4 py-3 flex items-center gap-3 transition-colors" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-label-mono text-label-mono">Product Management</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-variant px-4 py-3 flex items-center gap-3 transition-colors" href="#">
+<span class="material-symbols-outlined">conveyor_belt</span>
+<span class="font-label-mono text-label-mono">Stock Arrivals</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-variant px-4 py-3 flex items-center gap-3 transition-colors" href="#">
+<span class="material-symbols-outlined">request_quote</span>
+<span class="font-label-mono text-label-mono">Quote Requests</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-variant px-4 py-3 flex items-center gap-3 transition-colors" href="#">
+<span class="material-symbols-outlined">rate_review</span>
+<span class="font-label-mono text-label-mono">Review Moderation</span>
+</a>
+<a class="bg-primary-container text-on-primary-container font-bold border-l-4 border-primary px-4 py-3 flex items-center gap-3 transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-mono text-label-mono">Settings</span>
+</a>
+</nav>
+<div class="mt-auto px-4 space-y-1 border-t border-white/5 pt-4">
+<a class="text-on-surface-variant hover:bg-surface-variant px-4 py-3 flex items-center gap-3 transition-colors" href="#">
+<span class="material-symbols-outlined">sensors</span>
+<span class="font-label-mono text-label-mono">System Status</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-variant px-4 py-3 flex items-center gap-3 transition-colors" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-mono text-label-mono">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="pt-32 pb-20 px-4 md:pl-72 md:pr-16 max-w-[1600px] mx-auto">
+<header class="mb-12">
+<h2 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-2">Configuration de l'Entreprise</h2>
+<p class="text-on-surface-variant font-body-lg">Gérez les informations publiques et les coordonnées opérationnelles d'Attia Froid.</p>
+</header>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Information Form -->
+<div class="lg:col-span-8 space-y-8">
+<!-- Section: Contact Principal -->
+<section class="glass-panel p-8 rounded-xl shadow-2xl relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-1 bg-primary/20"></div>
+<div class="flex items-center gap-3 mb-8">
+<span class="material-symbols-outlined text-primary">contact_phone</span>
+<h3 class="font-headline-md text-headline-md">Contact &amp; Localisation</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Téléphone -->
+<div class="relative industrial-border bg-surface-container-lowest p-4 rounded-lg group">
+<input class="w-full bg-transparent border-none focus:ring-0 text-on-surface font-label-mono p-0 pt-4" id="phone" placeholder=" " type="text" value="+216 72 000 000"/>
+<label class="absolute left-4 top-4 text-on-surface-variant transition-all pointer-events-none font-label-mono text-xs uppercase tracking-wider" for="phone">Téléphone d'entreprise</label>
+</div>
+<!-- Email -->
+<div class="relative industrial-border bg-surface-container-lowest p-4 rounded-lg group">
+<input class="w-full bg-transparent border-none focus:ring-0 text-on-surface font-label-mono p-0 pt-4" id="email" placeholder=" " type="email" value="contact@attiafroid.tn"/>
+<label class="absolute left-4 top-4 text-on-surface-variant transition-all pointer-events-none font-label-mono text-xs uppercase tracking-wider" for="email">Email Professionnel</label>
+</div>
+<!-- Adresse -->
+<div class="relative industrial-border bg-surface-container-lowest p-4 rounded-lg group md:col-span-2">
+<input class="w-full bg-transparent border-none focus:ring-0 text-on-surface font-label-mono p-0 pt-4" id="address" placeholder=" " type="text" value="Zone Industrielle, Kélibia 8090, Tunisie"/>
+<label class="absolute left-4 top-4 text-on-surface-variant transition-all pointer-events-none font-label-mono text-xs uppercase tracking-wider" for="address">Adresse à Kélibia</label>
+</div>
+</div>
+</section>
+<!-- Section: Horaires d'Ouverture -->
+<section class="glass-panel p-8 rounded-xl shadow-2xl relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-1 bg-secondary/20"></div>
+<div class="flex items-center gap-3 mb-8">
+<span class="material-symbols-outlined text-secondary">schedule</span>
+<h3 class="font-headline-md text-headline-md">Horaires d'Exploitation</h3>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="flex flex-col gap-2 p-4 bg-surface-container-low rounded border border-white/5">
+<span class="font-label-mono text-xs text-on-surface-variant uppercase">Lundi - Vendredi</span>
+<div class="flex items-center justify-between">
+<input class="bg-transparent border-none text-primary font-label-mono p-0 w-16 focus:ring-0" type="time" value="08:00"/>
+<span class="text-on-surface-variant">—</span>
+<input class="bg-transparent border-none text-primary font-label-mono p-0 w-16 focus:ring-0" type="time" value="18:00"/>
+</div>
+</div>
+<div class="flex flex-col gap-2 p-4 bg-surface-container-low rounded border border-white/5">
+<span class="font-label-mono text-xs text-on-surface-variant uppercase">Samedi</span>
+<div class="flex items-center justify-between">
+<input class="bg-transparent border-none text-primary font-label-mono p-0 w-16 focus:ring-0" type="time" value="08:00"/>
+<span class="text-on-surface-variant">—</span>
+<input class="bg-transparent border-none text-primary font-label-mono p-0 w-16 focus:ring-0" type="time" value="14:00"/>
+</div>
+</div>
+<div class="flex flex-col gap-2 p-4 bg-surface-container-low rounded border border-white/5">
+<span class="font-label-mono text-xs text-on-surface-variant uppercase">Dimanche</span>
+<div class="flex items-center justify-between">
+<span class="font-label-mono text-error">FERMÉ</span>
+<button class="text-xs text-primary underline underline-offset-2">Ouvrir</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Section: Réseaux Sociaux -->
+<section class="glass-panel p-8 rounded-xl shadow-2xl relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-1 bg-on-secondary-fixed/20"></div>
+<div class="flex items-center gap-3 mb-8">
+<span class="material-symbols-outlined text-primary">share</span>
+<h3 class="font-headline-md text-headline-md">Présence Digitale</h3>
+</div>
+<div class="space-y-4">
+<div class="flex items-center gap-4 bg-surface-container-lowest p-2 rounded-lg border border-white/5">
+<div class="w-10 h-10 flex items-center justify-center bg-blue-600/10 text-blue-500 rounded">
+<span class="material-symbols-outlined">public</span>
+</div>
+<input class="flex-1 bg-transparent border-none focus:ring-0 text-on-surface font-body-md" placeholder="Lien Facebook" type="url" value="https://facebook.com/attiafroid"/>
+</div>
+<div class="flex items-center gap-4 bg-surface-container-lowest p-2 rounded-lg border border-white/5">
+<div class="w-10 h-10 flex items-center justify-center bg-pink-600/10 text-pink-500 rounded">
+<span class="material-symbols-outlined">camera</span>
+</div>
+<input class="flex-1 bg-transparent border-none focus:ring-0 text-on-surface font-body-md" placeholder="Lien Instagram" type="url" value="https://instagram.com/attiafroid"/>
+</div>
+<div class="flex items-center gap-4 bg-surface-container-lowest p-2 rounded-lg border border-white/5">
+<div class="w-10 h-10 flex items-center justify-center bg-cyan-600/10 text-cyan-500 rounded">
+<span class="material-symbols-outlined">business_center</span>
+</div>
+<input class="flex-1 bg-transparent border-none focus:ring-0 text-on-surface font-body-md" placeholder="Lien LinkedIn" type="url" value="https://linkedin.com/company/attiafroid"/>
+</div>
+</div>
+</section>
+</div>
+<!-- Sidebar / Preview -->
+<div class="lg:col-span-4 space-y-6">
+<!-- Map Preview -->
+<div class="glass-panel rounded-xl overflow-hidden border border-white/10 shadow-2xl">
+<div class="h-48 bg-surface-variant relative">
+<div class="w-full h-full bg-cover bg-center opacity-60" data-alt="A cinematic, high-contrast satellite view of Kélibia city in Tunisia during the golden hour. The industrial port and coastline are visible, rendered with deep blacks and vibrant cyan highlights to match a technical industrial aesthetic. Soft lens flares and a high-end photography style create a professional corporate atmosphere." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB2sMTemaxMfvUhGwyxrrkyrLM-ePvRAccwOSFnD1ZBmXtqC_fsD6jh5vH4SmVKsC3EFBuhcUZ_N9vJwxQRwcWubvTaJIA3RvAsZy4xNO7uZ0e5Z3IDXATrff3M-hEJaUwdyx8Zosp3zIuLeI4uOGFVbKmyw-ShRyr4GP5wWssW3M_hwY1XKOk3UV5Z_MHrhSlAQ_c9p7ZExuJRyR0aNS80IOWFrbq19ajSczAfi3nT5noAf5iO6bgs')"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="bg-primary text-black p-2 rounded-full shadow-[0_0_20px_rgba(46,196,224,0.6)] animate-pulse">
+<span class="material-symbols-outlined">location_on</span>
+</div>
+</div>
+</div>
+<div class="p-6">
+<h4 class="font-headline-md text-headline-md mb-2">Siège de Kélibia</h4>
+<p class="text-on-surface-variant text-sm mb-4">Emplacement stratégique pour la distribution industrielle au Cap Bon.</p>
+<button class="w-full py-3 border border-primary text-primary hover:bg-primary hover:text-black transition-all font-button-text uppercase tracking-widest text-xs">Ajuster le Marqueur</button>
+</div>
+</div>
+<!-- Status Card -->
+<div class="bg-surface-container-high p-6 rounded-xl border-l-4 border-primary">
+<div class="flex justify-between items-start mb-4">
+<span class="font-label-mono text-xs uppercase text-primary">État du Système</span>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]"></div>
+<span class="font-label-mono text-xs text-green-500">Live</span>
+</div>
+</div>
+<p class="text-on-surface-variant text-sm leading-relaxed">Les modifications apportées ici seront immédiatement répercutées sur le portail client et les factures générées.</p>
+</div>
+<!-- Action Bar -->
+<div class="sticky top-24 space-y-3">
+<button class="w-full py-4 bg-primary text-black font-button-text text-lg rounded shadow-lg hover:bg-white hover:shadow-primary/20 transition-all flex items-center justify-center gap-3">
+<span class="material-symbols-outlined">save</span>
+                        SAUVEGARDER LES MODIFICATIONS
+                    </button>
+<button class="w-full py-4 border border-white/10 text-on-surface-variant font-button-text text-sm rounded hover:bg-white/5 transition-all">
+                        ANNULER
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<!-- Success Message (Toast) - Hidden by default -->
+<div class="fixed bottom-8 right-8 bg-surface-container-highest border border-primary p-4 rounded-lg flex items-center gap-4 translate-y-24 opacity-0 transition-all duration-500 shadow-2xl z-[100]" id="toast">
+<div class="bg-primary text-black p-2 rounded">
+<span class="material-symbols-outlined">check_circle</span>
+</div>
+<div>
+<p class="font-bold text-on-surface">Paramètres mis à jour</p>
+<p class="text-xs text-on-surface-variant">Les modifications ont été synchronisées.</p>
+</div>
+</div>
+<script>
+        // Simple Interaction logic
+        const saveBtn = document.querySelector('button.bg-primary');
+        const toast = document.getElementById('toast');
+
+        saveBtn.addEventListener('click', () => {
+            saveBtn.innerHTML = '<span class="material-symbols-outlined animate-spin">refresh</span> TRAITEMENT...';
+            saveBtn.disabled = true;
+            
+            setTimeout(() => {
+                saveBtn.innerHTML = '<span class="material-symbols-outlined">save</span> SAUVEGARDER LES MODIFICATIONS';
+                saveBtn.disabled = false;
+                
+                // Show Toast
+                toast.classList.remove('translate-y-24', 'opacity-0');
+                
+                setTimeout(() => {
+                    toast.classList.add('translate-y-24', 'opacity-0');
+                }, 3000);
+            }, 1500);
+        });
+
+        // Hover effects on inputs
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.classList.add('scale-[1.01]');
+            });
+            input.addEventListener('blur', () => {
+                input.parentElement.classList.remove('scale-[1.01]');
+            });
+        });
+    </script>
+</body></html>

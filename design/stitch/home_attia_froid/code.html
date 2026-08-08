@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Attia Froid | Solutions de Réfrigération Professionnelle</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&amp;family=Inter:wght@300;400;500&amp;family=Space+Mono&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error": "#ffb4ab",
+                    "on-error": "#690005",
+                    "on-secondary": "#373100",
+                    "surface-dim": "#131313",
+                    "secondary-container": "#e5d100",
+                    "primary-fixed-dim": "#4cd7f4",
+                    "on-primary-fixed": "#001f26",
+                    "on-secondary-container": "#625900",
+                    "inverse-on-surface": "#313030",
+                    "on-primary": "#00363f",
+                    "secondary-fixed": "#fae527",
+                    "error-container": "#93000a",
+                    "outline": "#869397",
+                    "on-primary-fixed-variant": "#004e5b",
+                    "surface-container-highest": "#353534",
+                    "surface-tint": "#4cd7f4",
+                    "tertiary": "#cfcfd0",
+                    "on-surface-variant": "#bcc9cd",
+                    "tertiary-fixed-dim": "#c6c6c7",
+                    "on-primary-container": "#004d5a",
+                    "on-secondary-fixed-variant": "#4f4700",
+                    "tertiary-container": "#b3b4b4",
+                    "on-tertiary-fixed": "#1a1c1c",
+                    "surface-bright": "#3a3939",
+                    "surface": "#131313",
+                    "primary-container": "#2ec4e0",
+                    "surface-container-low": "#1c1b1b",
+                    "on-tertiary-container": "#444646",
+                    "on-error-container": "#ffdad6",
+                    "on-tertiary": "#2f3131",
+                    "primary": "#57e0fd",
+                    "background": "#131313",
+                    "inverse-primary": "#006879",
+                    "primary-fixed": "#a8edff",
+                    "secondary-fixed-dim": "#dcc800",
+                    "secondary": "#ffed66",
+                    "inverse-surface": "#e5e2e1",
+                    "surface-container": "#201f1f",
+                    "on-background": "#e5e2e1",
+                    "surface-container-high": "#2a2a2a",
+                    "on-secondary-fixed": "#201c00",
+                    "outline-variant": "#3c494c",
+                    "on-tertiary-fixed-variant": "#454747",
+                    "on-surface": "#e5e2e1",
+                    "surface-variant": "#353534",
+                    "surface-container-lowest": "#0e0e0e",
+                    "tertiary-fixed": "#e2e2e2"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "margin-mobile": "16px",
+                    "margin-desktop": "64px",
+                    "base": "8px",
+                    "container-max": "1440px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "display-lg": ["Montserrat"],
+                    "label-mono": ["Space Mono"],
+                    "button-text": ["Montserrat"],
+                    "body-lg": ["Inter"],
+                    "display-lg-mobile": ["Montserrat"],
+                    "headline-md": ["Montserrat"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "label-mono": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "400"}],
+                    "button-text": ["14px", {"lineHeight": "1", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "800"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #0A0A0A;
+            color: #e5e2e1;
+            overflow-x: hidden;
+        }
+        .glass-card {
+            background: rgba(46, 196, 224, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .deep-frost {
+            box-shadow: 0 40px 40px 0 rgba(0, 0, 0, 0.3);
+        }
+        .hover-glow:hover {
+            border-color: #57e0fd;
+            box-shadow: 0 0 20px rgba(46, 196, 224, 0.2);
+        }
+        .snowflake-indicator::after {
+            content: '•';
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #57e0fd;
+        }
+        /* Custom scrollbar for horizontal carousel */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="font-body-md bg-background text-on-surface">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/60 dark:bg-surface/60 backdrop-blur-md border-b border-white/10 shadow-[0_40px_40px_0_rgba(0,0,0,0.3)]">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop h-16 w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary cursor-pointer active:scale-95 transition-transform">menu</span>
+<span class="font-display-lg text-headline-md text-primary tracking-tighter border-t-2 border-primary">AF</span>
+</div>
+<nav class="hidden md:flex gap-8 items-center h-full">
+<a class="font-button-text text-primary border-b-2 border-primary h-full flex items-center relative snowflake-indicator" href="#">Accueil</a>
+<a class="font-button-text text-on-surface-variant hover:text-white transition-colors duration-200" href="#">Secteurs</a>
+<a class="font-button-text text-on-surface-variant hover:text-white transition-colors duration-200" href="#">Catalogue</a>
+<a class="font-button-text text-on-surface-variant hover:text-white transition-colors duration-200" href="#">Sur Mesure</a>
+</nav>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary cursor-pointer active:scale-95 transition-transform">dark_mode</span>
+<button class="hidden md:block bg-primary text-on-primary px-6 py-2 rounded-lg font-button-text hover:bg-white transition-all active:scale-95">DEVIS</button>
+</div>
+</div>
+</header>
+<main class="pt-16">
+<!-- Hero Section -->
+<section class="relative min-h-[795px] flex items-center overflow-hidden">
+
+<div class="relative z-10 w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
+<div class="md:col-span-6 space-y-8 py-20">
+<div class="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 px-3 py-1 rounded-full">
+<span class="material-symbols-outlined text-sm text-primary">ac_unit</span>
+<span class="font-label-mono text-label-mono text-primary">EXCELLENCE TECHNIQUE</span>
+</div>
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-white">
+                        Fabrication <br/><span class="text-primary">sur Mesure</span>
+</h1>
+<p class="font-body-lg text-on-surface-variant max-w-lg">
+                        Conception et réalisation de systèmes de réfrigération industrielle haute performance. Qualité et innovation pour les professionnels les plus exigeants.
+                    </p>
+<div class="flex flex-wrap gap-4 pt-4">
+<button class="bg-primary-container text-on-primary-container px-8 py-4 rounded-lg font-button-text hover:bg-white transition-all active:scale-95 flex items-center gap-2">
+                            Voir le catalogue
+                            <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+<button class="border border-primary-container text-primary-container px-8 py-4 rounded-lg font-button-text hover:bg-primary-container/10 transition-all active:scale-95">
+                            Demander un devis
+                        </button>
+</div>
+</div>
+<div class="md:col-span-6 relative">
+<div class="relative aspect-square glass-card rounded-xl p-4 overflow-hidden group">
+<img class="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-transform duration-700" data-alt="A high-end, professional industrial refrigeration unit with brushed stainless steel finish and digital control panels. The lighting is cold and precise with cyan accents reflecting off the metallic surfaces. The background is a dark, minimalist industrial workshop, creating a mood of technical mastery and premium quality. Corporate modern style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5_BAY8k5AWhoNHOtqK4IeuiNjrXtMW0EMORU-UwklxdKJEImjhHKtTH2jPgYmCrEL80p5QzAVHJqgc2IGq9cm4Ck8Y2ijZzE_z_R05FkHufabSJBi_zkrgOfxZI50O_JS_Imn5Xy70HFLO-3QdDoJUsf46fqfkRuTm3J2kkxPIP-08LUBproCHrFK8qYJ6wuCyRRztUzHs7d4X5YGAvVnsOG8WutFg4LdVpsSTMmNEAMOTfzle3Bo"/>
+<div class="absolute bottom-8 left-8 right-8 glass-card p-6 border-l-4 border-secondary">
+<p class="font-label-mono text-label-mono text-secondary mb-1">UNITÉ SÉRIE-K</p>
+<p class="font-headline-md text-white">Performance Arctique</p>
+</div>
+</div>
+<!-- Decorative technical elements -->
+<div class="absolute -top-4 -right-4 w-24 h-24 border-t-2 border-r-2 border-primary/40 hidden md:block"></div>
+<div class="absolute -bottom-4 -left-4 w-24 h-24 border-b-2 border-l-2 border-secondary/40 hidden md:block"></div>
+</div>
+</div>
+</section>
+<!-- Sector Highlights (Bento-style grid) -->
+<section class="py-24 bg-surface-container-lowest">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+<div>
+<p class="font-label-mono text-label-mono text-primary mb-2 uppercase tracking-widest">Expertise Sectorielle</p>
+<h2 class="font-display-lg text-headline-md md:text-display-lg text-white">Solutions par métier</h2>
+</div>
+<p class="text-on-surface-variant max-w-sm">Une ingénierie adaptée aux contraintes spécifiques de chaque environnement professionnel.</p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Sector Card 1 -->
+<div class="glass-card p-8 rounded-xl hover-glow transition-all group cursor-pointer">
+<div class="w-14 h-14 bg-surface-container rounded-lg flex items-center justify-center mb-6 border-t-2 border-primary group-hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-primary text-3xl">coffee</span>
+</div>
+<h3 class="font-headline-md text-white mb-4">Cafeteria</h3>
+<p class="text-on-surface-variant text-sm mb-6">Comptoirs réfrigérés et vitrines d'exposition haute visibilité.</p>
+<span class="font-label-mono text-xs text-secondary underline">DÉCOUVRIR</span>
+</div>
+<!-- Sector Card 2 -->
+<div class="glass-card p-8 rounded-xl hover-glow transition-all group cursor-pointer">
+<div class="w-14 h-14 bg-surface-container rounded-lg flex items-center justify-center mb-6 border-t-2 border-primary group-hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-primary text-3xl">fastfood</span>
+</div>
+<h3 class="font-headline-md text-white mb-4">Fast-food</h3>
+<p class="text-on-surface-variant text-sm mb-6">Stockage intensif et accès rapide pour flux tendus.</p>
+<span class="font-label-mono text-xs text-secondary underline">DÉCOUVRIR</span>
+</div>
+<!-- Sector Card 3 -->
+<div class="glass-card p-8 rounded-xl hover-glow transition-all group cursor-pointer">
+<div class="w-14 h-14 bg-surface-container rounded-lg flex items-center justify-center mb-6 border-t-2 border-primary group-hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-primary text-3xl">bakery_dining</span>
+</div>
+<h3 class="font-headline-md text-white mb-4">Boulangerie</h3>
+<p class="text-on-surface-variant text-sm mb-6">Contrôle précis de l'hygrométrie et du froid positif.</p>
+<span class="font-label-mono text-xs text-secondary underline">DÉCOUVRIR</span>
+</div>
+<!-- Sector Card 4 -->
+<div class="glass-card p-8 rounded-xl hover-glow transition-all group cursor-pointer">
+<div class="w-14 h-14 bg-surface-container rounded-lg flex items-center justify-center mb-6 border-t-2 border-primary group-hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-primary text-3xl">hotel</span>
+</div>
+<h3 class="font-headline-md text-white mb-4">Hôtellerie</h3>
+<p class="text-on-surface-variant text-sm mb-6">Solutions intégrées pour cuisines centrales et buffets.</p>
+<span class="font-label-mono text-xs text-secondary underline">DÉCOUVRIR</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Products Carousel -->
+<section class="py-24 overflow-hidden">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mb-12 flex justify-between items-center">
+<h2 class="font-display-lg text-headline-md md:text-display-lg text-white">Équipements Phares</h2>
+<div class="flex gap-4">
+<button class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-12 h-12 rounded-full border border-primary flex items-center justify-center hover:bg-primary/10 transition-colors text-primary">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="flex gap-gutter overflow-x-auto px-margin-mobile md:px-margin-desktop hide-scrollbar scroll-smooth">
+<!-- Product Card 1 -->
+<div class="min-w-[320px] md:min-w-[400px] group">
+<div class="bg-[#161616] border border-white/10 rounded-xl overflow-hidden mb-6 relative">
+<img class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Close up of a professional stainless steel reach-in refrigerator for commercial kitchens. Studio lighting highlighting the metallic texture and high-tech blue LED temperature display. Isolated on a neutral dark background, 8k resolution, industrial chic aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAB1ayAuW_17YLTC2GpyQH7OaBdC0ctGMibILpgBhX9jKzTcP75mFYasIEYpV5mOqVphtQzg9-dxdjNcLe0uYJHjJE9YnRWWNuLQuYDvQGeEAFqdtS8WL4YRFlnMlkTF3dAcMSKgKZ4RUN3preQT29iX02W50nXj4LWVuDXUAg66I9GQsM-azfCJsm_nnFrmc6SJ8vsep0wbFHC55s2L2FfS-BPFRzQMHTqJ7PTUgopJvgrgTGznWMf"/>
+<div class="absolute top-4 left-4 bg-surface/80 backdrop-blur px-3 py-1 border-t border-primary rounded">
+<span class="font-label-mono text-[10px] text-primary">REF: AF-900X</span>
+</div>
+</div>
+<h4 class="font-headline-md text-white mb-1">Armoire Positive Inox</h4>
+<p class="font-label-mono text-sm text-secondary mb-4">2.400,00 € HT</p>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-green-500"></div>
+<span class="font-label-mono text-xs text-on-surface-variant">Disponible en stock</span>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="min-w-[320px] md:min-w-[400px] group">
+<div class="bg-[#161616] border border-white/10 rounded-xl overflow-hidden mb-6 relative">
+<img class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Professional glass door display cooler for beverages and salads. Interior bright white lighting, crystal clear glass, sleek black frame. Modern luxury aesthetic, studio setting, deep shadows, cyan light accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvOPG4OXMxq63nw7LXx3d37QN2jjiCQNKnAf041yUWUrlGEVpuDw9YWWa02Yia_gR4GovD1_-MHs62earDMZCcB_R2zXVqBRf2om_MF4QX907DDqCCzvRfghAYNas07YOBP356TaHmwziQIahYWIviiobV8uJMIVOFUvQ_8lnzzUpkELAv2Le51IwZr8wO2GlGkw9wrXTQ7l0-Rfz4TyKxwjOXqvT1uzyHjttrSK8KrMd7N2o68hEr"/>
+<div class="absolute top-4 left-4 bg-surface/80 backdrop-blur px-3 py-1 border-t border-primary rounded">
+<span class="font-label-mono text-[10px] text-primary">REF: AF-GLASS-V</span>
+</div>
+</div>
+<h4 class="font-headline-md text-white mb-1">Vitrine Murale Ventilée</h4>
+<p class="font-label-mono text-sm text-secondary mb-4">3.150,00 € HT</p>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-yellow-500"></div>
+<span class="font-label-mono text-xs text-on-surface-variant">Stock limité</span>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="min-w-[320px] md:min-w-[400px] group">
+<div class="bg-[#161616] border border-white/10 rounded-xl overflow-hidden mb-6 relative">
+<img class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Industrial cold room installation inside a food warehouse. Large heavy-duty insulated doors with chrome handles. Technical precision, clean lines, professional atmosphere. High contrast blue and dark grey tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWGmiKdp4obYenRXJTFBUNPLKzk4xDQ79hcyGl-5N2GEpBVe5n7HRhqXgOfMfZUIbZgIN8IrsD_NIMfrBfh6zmq-gcfkqM1h_yXWPiBiOoQ3CFDMOXnl-D5HoL0K9IFxs0jTi1cfNs-mZcpN0MdTkbiUNCIi8Chp55OJWzMUxkNB5CJYHBE39ccW1HIswQO6T5wQ4H_pkrNM5XjfqMNTo9A5Jjr7dqgdFNAZew-5lnD_tXmhUW4mOK"/>
+<div class="absolute top-4 left-4 bg-surface/80 backdrop-blur px-3 py-1 border-t border-primary rounded">
+<span class="font-label-mono text-[10px] text-primary">REF: AF-CUSTOM</span>
+</div>
+</div>
+<h4 class="font-headline-md text-white mb-1">Chambre Froide Modulaire</h4>
+<p class="font-label-mono text-sm text-secondary mb-4">Sur devis uniquement</p>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<span class="font-label-mono text-xs text-on-surface-variant">Fabrication sur mesure</span>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="min-w-[320px] md:min-w-[400px] group">
+<div class="bg-[#161616] border border-white/10 rounded-xl overflow-hidden mb-6 relative">
+<img class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Detail shot of an industrial refrigeration compressor unit. High tech machinery, pipes, and gauges. Dark metallic aesthetic with soft focus background. Professional industrial photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFqKp8QKzEvFIId7yPPbkzmJ10QzoGxPKtKQycs1OdBdRjKHiakYqBMHyBs_CcZSsyFRgEO7KfoG046gAFCHi1DalUywQRdz6KdQLTf6tnwhc1ai7lDqQ_hWX9xNwapKbcfTXp2hkXKS2su0gC9yYWfx4eMbTNpI5iG9qJx2QFVcNsxb14N6QXIchaigHBaJovyKYxCi8aMWqsTrna6O6xyjSVPoI6eaxkEUCJ-XB-UcArnsI4fdpk"/>
+<div class="absolute top-4 left-4 bg-surface/80 backdrop-blur px-3 py-1 border-t border-primary rounded">
+<span class="font-label-mono text-[10px] text-primary">REF: AF-POWER-X</span>
+</div>
+</div>
+<h4 class="font-headline-md text-white mb-1">Groupe Frigorifique Extérieur</h4>
+<p class="font-label-mono text-sm text-secondary mb-4">1.890,00 € HT</p>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-green-500"></div>
+<span class="font-label-mono text-xs text-on-surface-variant">Disponible en stock</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Trust Section -->
+<section class="py-24 bg-surface-container-low relative">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-12 gap-16 items-center">
+<div class="md:col-span-5 space-y-8">
+<h2 class="font-display-lg text-headline-md md:text-display-lg text-white">30 ans d'expertise au service du froid.</h2>
+<p class="text-on-surface-variant body-lg">Nous ne vendons pas seulement des équipements ; nous concevons des écosystèmes thermiques durables et économes en énergie.</p>
+<div class="grid grid-cols-2 gap-4">
+<div class="p-6 bg-surface-container-highest rounded-lg border-l-4 border-primary">
+<p class="text-3xl font-display-lg text-primary mb-1">10k+</p>
+<p class="font-label-mono text-xs uppercase text-on-surface-variant">Installations</p>
+</div>
+<div class="p-6 bg-surface-container-highest rounded-lg border-l-4 border-secondary">
+<p class="text-3xl font-display-lg text-secondary mb-1">24/7</p>
+<p class="font-label-mono text-xs uppercase text-on-surface-variant">Support Technique</p>
+</div>
+</div>
+<div class="flex flex-wrap gap-4 pt-4">
+<div class="flex items-center gap-2 border border-white/10 px-4 py-2 rounded">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label-mono text-xs">CERTIFIÉ ISO 9001</span>
+</div>
+<div class="flex items-center gap-2 border border-white/10 px-4 py-2 rounded">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">precision_manufacturing</span>
+<span class="font-label-mono text-xs">FABRICATION LOCALE</span>
+</div>
+</div>
+</div>
+<div class="md:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-gutter">
+<!-- Review Card 1 -->
+<div class="glass-card p-8 rounded-xl self-start">
+<div class="flex text-secondary mb-4">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="italic text-on-surface-variant mb-6">"Attia Froid a transformé notre cuisine centrale avec des solutions sur mesure d'une fiabilité exemplaire."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center font-display-lg text-primary">JD</div>
+<div>
+<p class="font-button-text text-white">Jean Dupont</p>
+<p class="text-xs text-on-surface-variant">Directeur, Grand Hôtel</p>
+</div>
+</div>
+</div>
+<!-- Review Card 2 -->
+<div class="glass-card p-8 rounded-xl mt-8 sm:mt-16">
+<div class="flex text-secondary mb-4">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="italic text-on-surface-variant mb-6">"Un accompagnement technique irréprochable du premier croquis jusqu'à la mise en service. Un vrai partenaire pro."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center font-display-lg text-primary">ML</div>
+<div>
+<p class="font-button-text text-white">Marie Lambert</p>
+<p class="text-xs text-on-surface-variant">Chef, Le Gourmet</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-24">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="bg-primary p-12 md:p-20 rounded-xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8">
+<div class="relative z-10 space-y-4 text-center md:text-left">
+<h2 class="font-display-lg text-display-lg-mobile md:text-headline-md text-on-primary">Prêt à optimiser votre chaîne du froid ?</h2>
+<p class="text-on-primary/80 font-body-lg">Nos ingénieurs sont à votre disposition pour une étude personnalisée.</p>
+</div>
+<div class="relative z-10">
+<button class="bg-on-primary text-primary px-10 py-5 rounded-lg font-button-text hover:bg-white transition-all active:scale-95 shadow-2xl">
+                            CONTACTER UN EXPERT
+                        </button>
+</div>
+<!-- Abstract background elements -->
+<div class="absolute right-0 top-0 w-1/3 h-full bg-white/10 -skew-x-12 translate-x-1/2"></div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest border-t border-white/5 py-20">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop w-full max-w-container-max mx-auto">
+<div class="space-y-6">
+<span class="font-display-lg text-headline-md text-primary">AF</span>
+<p class="text-on-surface-variant text-sm">Leader en solutions de réfrigération professionnelle sur mesure. Innovation et durabilité depuis 1994.</p>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary">qr_code_2</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary">language</span>
+</div>
+</div>
+<div>
+<h4 class="font-button-text text-white mb-6 uppercase tracking-widest text-xs">Secteurs</h4>
+<ul class="space-y-4">
+<li><a class="text-on-surface-variant hover:text-primary transition-colors text-sm" href="#">Cafeteria</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors text-sm" href="#">Bakery</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors text-sm" href="#">Hospitality</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors text-sm" href="#">Fast-food</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-button-text text-white mb-6 uppercase tracking-widest text-xs">Support</h4>
+<ul class="space-y-4">
+<li><a class="text-on-surface-variant hover:text-primary transition-colors text-sm" href="#">Technical Support</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors text-sm" href="#">Privacy Policy</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors text-sm" href="#">Conditions de Vente</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-button-text text-white mb-6 uppercase tracking-widest text-xs">Contact</h4>
+<address class="not-italic space-y-4 text-sm text-on-surface-variant">
+<p class="flex items-center gap-2"><span class="material-symbols-outlined text-xs">location_on</span> Kélibia, Tunisia</p>
+<p class="flex items-center gap-2"><span class="material-symbols-outlined text-xs">phone</span> +216 72 123 456</p>
+<p class="flex items-center gap-2"><span class="material-symbols-outlined text-xs">mail</span> contact@attiafroid.com</p>
+</address>
+</div>
+</div>
+<div class="mt-20 pt-8 border-t border-white/5 text-center px-margin-mobile">
+<p class="font-label-mono text-label-mono text-on-surface-variant/50">© 2024 Attia Froid. Kélibia, Tunisia.</p>
+</div>
+</footer>
+<!-- Floating Action Button -->
+<div class="fixed bottom-8 right-8 z-40 md:hidden">
+<button class="w-14 h-14 bg-primary text-on-primary rounded-full shadow-2xl flex items-center justify-center active:scale-95 transition-transform">
+<span class="material-symbols-outlined">message</span>
+</button>
+</div>
+<script>
+        // Micro-interaction for sector cards
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+    </script>
+</body></html>

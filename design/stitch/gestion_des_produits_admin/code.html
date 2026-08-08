@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Attia Froid - Product Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Montserrat:wght@700;800&family=Space+Mono:wght@400;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Montserrat:wght@100..900&family=Space+Mono:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed-variant": "#004e5b",
+                    "on-secondary-fixed": "#201c00",
+                    "on-background": "#e5e2e1",
+                    "inverse-primary": "#006879",
+                    "outline-variant": "#3c494c",
+                    "error": "#ffb4ab",
+                    "on-primary-container": "#004d5a",
+                    "surface-container": "#201f1f",
+                    "on-surface": "#e5e2e1",
+                    "on-secondary-fixed-variant": "#4f4700",
+                    "surface": "#131313",
+                    "surface-container-high": "#2a2a2a",
+                    "surface-variant": "#353534",
+                    "secondary-container": "#e5d100",
+                    "surface-bright": "#3a3939",
+                    "tertiary-fixed-dim": "#c6c6c7",
+                    "on-primary-fixed": "#001f26",
+                    "on-primary": "#00363f",
+                    "on-tertiary-fixed": "#1a1c1c",
+                    "secondary-fixed-dim": "#dcc800",
+                    "primary-fixed-dim": "#4cd7f4",
+                    "on-error": "#690005",
+                    "on-tertiary-container": "#444646",
+                    "on-secondary": "#373100",
+                    "inverse-on-surface": "#313030",
+                    "background": "#131313",
+                    "primary": "#57e0fd",
+                    "surface-container-lowest": "#0e0e0e",
+                    "on-error-container": "#ffdad6",
+                    "surface-dim": "#131313",
+                    "primary-fixed": "#a8edff",
+                    "secondary": "#ffed66",
+                    "surface-tint": "#4cd7f4",
+                    "surface-container-low": "#1c1b1b",
+                    "tertiary-container": "#b3b4b4",
+                    "surface-container-highest": "#353534",
+                    "inverse-surface": "#e5e2e1",
+                    "outline": "#869397",
+                    "primary-container": "#2ec4e0",
+                    "tertiary-fixed": "#e2e2e2",
+                    "on-tertiary-fixed-variant": "#454747",
+                    "on-secondary-container": "#625900",
+                    "secondary-fixed": "#fae527",
+                    "on-tertiary": "#2f3131",
+                    "on-surface-variant": "#bcc9cd",
+                    "tertiary": "#cfcfd0",
+                    "error-container": "#93000a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "container-max": "1440px",
+                    "margin-mobile": "16px",
+                    "base": "8px",
+                    "margin-desktop": "64px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "label-mono": ["Space Mono"],
+                    "body-lg": ["Inter"],
+                    "headline-md": ["Montserrat"],
+                    "display-lg": ["Montserrat"],
+                    "button-text": ["Montserrat"],
+                    "body-md": ["Inter"],
+                    "display-lg-mobile": ["Montserrat"]
+            },
+            "fontSize": {
+                    "label-mono": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "button-text": ["14px", {"lineHeight": "1", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "800"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-card {
+        background: rgba(46, 196, 224, 0.05);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .frost-shadow {
+        box-shadow: 0 40px 40px 0 rgba(0, 0, 0, 0.3);
+      }
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #131313;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #3c494c;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #2ec4e0;
+      }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md selection:bg-primary selection:text-surface-container-lowest">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-desktop h-20 bg-surface/80 backdrop-blur-xl border-t-2 border-primary border-b border-white/10 shadow-[0_40px_40px_0_rgba(0,0,0,0.3)] transition-all duration-300 ease-in-out">
+<div class="flex items-center gap-8">
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary tracking-tighter">Attia Froid</h1>
+<div class="hidden md:flex gap-6 items-center">
+<a class="font-body-md text-primary border-b-2 border-primary pb-1 transition-all duration-300 ease-in-out" href="#">Tableau de bord</a>
+<a class="font-body-md text-on-surface-variant hover:text-secondary hover:underline decoration-secondary underline-offset-4 transition-all duration-300 ease-in-out" href="#">Catalogue</a>
+<a class="font-body-md text-on-surface-variant hover:text-secondary hover:underline decoration-secondary underline-offset-4 transition-all duration-300 ease-in-out" href="#">Analytiques</a>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex gap-4 text-on-surface-variant">
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors">notifications</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors">settings</span>
+</div>
+<button class="bg-primary px-6 py-2 rounded text-surface-container-lowest font-button-text hover:bg-white transition-colors duration-300">Support</button>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full w-64 bg-surface-container border-r border-white/10 shadow-2xl flex flex-col pt-24 pb-8 z-40 hidden md:flex">
+<div class="px-6 mb-8">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-primary-container rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container">ac_unit</span>
+</div>
+<div>
+<p class="font-headline-md text-headline-md text-on-surface leading-none">Arctic Precision</p>
+<p class="font-label-mono text-[10px] text-on-surface-variant uppercase tracking-widest mt-1">Industrial Control v2.4</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="bg-primary-container text-on-primary-container font-bold border-l-4 border-primary px-4 py-3 flex items-center gap-3 active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-label-mono text-label-mono">Product Management</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-variant px-4 py-3 flex items-center gap-3 hover:text-primary transition-colors active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">conveyor_belt</span>
+<span class="font-label-mono text-label-mono">Stock Arrivals</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-variant px-4 py-3 flex items-center gap-3 hover:text-primary transition-colors active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">request_quote</span>
+<span class="font-label-mono text-label-mono">Quote Requests</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-variant px-4 py-3 flex items-center gap-3 hover:text-primary transition-colors active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">rate_review</span>
+<span class="font-label-mono text-label-mono">Review Moderation</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-variant px-4 py-3 flex items-center gap-3 hover:text-primary transition-colors active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-mono text-label-mono">Settings</span>
+</a>
+</nav>
+<div class="px-4 mt-auto space-y-4">
+<button class="w-full bg-secondary-container text-on-secondary-container py-3 rounded font-button-text hover:bg-white transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">assessment</span>
+                Generate Report
+            </button>
+<div class="pt-4 border-t border-white/5 space-y-1">
+<a class="text-on-surface-variant hover:text-primary px-4 py-2 flex items-center gap-3 text-sm" href="#">
+<span class="material-symbols-outlined text-[18px]">sensors</span>
+                    System Status
+                </a>
+<a class="text-on-surface-variant hover:text-error px-4 py-2 flex items-center gap-3 text-sm" href="#">
+<span class="material-symbols-outlined text-[18px]">logout</span>
+                    Logout
+                </a>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="md:pl-64 pt-24 min-h-screen">
+<div class="max-w-[1440px] mx-auto p-margin-mobile md:p-margin-desktop">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+<div>
+<h2 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface tracking-tight mb-2">Gestion des Produits</h2>
+<p class="text-on-surface-variant font-body-lg max-w-xl">Supervisez l'inventaire complet des systèmes de réfrigération industrielle Arctic Precision.</p>
+</div>
+<button class="bg-primary hover:bg-white text-surface px-8 py-4 rounded font-button-text flex items-center gap-3 shadow-lg transition-all duration-300 transform hover:-translate-y-1 active:scale-95">
+<span class="material-symbols-outlined">add_circle</span>
+                    AJOUTER UN PRODUIT
+                </button>
+</div>
+<!-- Dashboard Stats -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
+<div class="glass-card p-6 frost-shadow">
+<p class="font-label-mono text-on-surface-variant mb-2">Total Produits</p>
+<p class="font-display-lg text-display-lg-mobile text-primary">1,248</p>
+</div>
+<div class="glass-card p-6 frost-shadow border-l-4 border-secondary">
+<p class="font-label-mono text-on-surface-variant mb-2">Stock Faible</p>
+<p class="font-display-lg text-display-lg-mobile text-secondary">14</p>
+</div>
+<div class="glass-card p-6 frost-shadow">
+<p class="font-label-mono text-on-surface-variant mb-2">Valeur Stock</p>
+<p class="font-display-lg text-display-lg-mobile text-primary">2.4M <span class="text-sm font-label-mono">DT</span></p>
+</div>
+<div class="glass-card p-6 frost-shadow">
+<p class="font-label-mono text-on-surface-variant mb-2">Status Système</p>
+<div class="flex items-center gap-2 text-primary">
+<span class="relative flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
+</span>
+<p class="font-label-mono">OPTIMAL</p>
+</div>
+</div>
+</div>
+<!-- Main Table Module -->
+<div class="glass-card overflow-hidden frost-shadow">
+<div class="p-6 border-b border-white/10 flex flex-wrap items-center justify-between gap-4">
+<div class="relative w-full md:w-96">
+<input class="w-full bg-surface-container-high border-none text-on-surface placeholder:text-on-surface-variant/50 focus:ring-1 focus:ring-primary h-12 px-12" placeholder="Rechercher par référence ou nom..." type="text"/>
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+</div>
+<div class="flex gap-2">
+<button class="bg-surface-container-high text-on-surface-variant px-4 py-2 hover:text-primary transition-colors flex items-center gap-2 font-label-mono text-sm">
+<span class="material-symbols-outlined text-sm">filter_list</span>
+                            FILTRES
+                        </button>
+<button class="bg-surface-container-high text-on-surface-variant px-4 py-2 hover:text-primary transition-colors flex items-center gap-2 font-label-mono text-sm">
+<span class="material-symbols-outlined text-sm">file_download</span>
+                            EXPORT
+                        </button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-highest/30">
+<th class="px-6 py-4 font-label-mono text-xs text-on-surface-variant tracking-widest uppercase">Aperçu</th>
+<th class="px-6 py-4 font-label-mono text-xs text-on-surface-variant tracking-widest uppercase">Nom & Réf</th>
+<th class="px-6 py-4 font-label-mono text-xs text-on-surface-variant tracking-widest uppercase">Catégorie</th>
+<th class="px-6 py-4 font-label-mono text-xs text-on-surface-variant tracking-widest uppercase">Prix</th>
+<th class="px-6 py-4 font-label-mono text-xs text-on-surface-variant tracking-widest uppercase">Statut Stock</th>
+<th class="px-6 py-4 font-label-mono text-xs text-on-surface-variant tracking-widest uppercase text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-white/5">
+<!-- Product Row 1 -->
+<tr class="group hover:bg-white/5 transition-colors">
+<td class="px-6 py-6">
+<div class="w-16 h-16 bg-surface-container-high border border-white/10 p-1">
+<div class="w-full h-full bg-cover bg-center" data-alt="A high-end stainless steel industrial refrigerator cabinet for professional kitchens. The product is shot in a clean studio setting with professional top-down lighting that emphasizes the metallic textures. The background is a neutral dark grey, aligning with the Arctic Precision premium industrial aesthetic. The lighting creates subtle cyan reflections on the chrome edges." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBGtOFnQ2yn5OTqUX0LhdgcxUk95fz8cspfD0WqDlMaJ00z_0YKaQJ3MSOwyZ_OVtZTrF3EZw1OyAxQ3lDQMT11ixWS2FKsD5O10WrtSN8Ylh-peFFxGriMqTIy2KQY1UBFaYlhi-EsRSGawrgDjn_lY9_Jb7h0fS6EOz9MvDRH5D90x_CfFG9Dx9fxUNpZzQ4KICuX6amB7ZczDsSMRAtyo7W25aF1FCoHNXuvp_z8eFJTcxhYNADu')"></div>
+</div>
+</td>
+<td class="px-6 py-6">
+<p class="font-body-md font-semibold text-on-surface">Armoire Positive Inox</p>
+<p class="font-label-mono text-xs text-primary/70">AF-902-DK</p>
+</td>
+<td class="px-6 py-6">
+<span class="inline-block px-3 py-1 bg-surface-container border-t border-primary/30 text-xs font-label-mono text-on-surface-variant">Réfrigération</span>
+</td>
+<td class="px-6 py-6 font-label-mono text-on-surface">
+                                    2.450,00 <span class="text-xs opacity-50">DT</span>
+</td>
+<td class="px-6 py-6">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+<span class="font-label-mono text-sm text-green-500">En stock</span>
+</div>
+</td>
+<td class="px-6 py-6 text-right">
+<div class="flex items-center justify-end gap-3 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined">edit</span></button>
+<button class="text-on-surface-variant hover:text-error"><span class="material-symbols-outlined">delete</span></button>
+</div>
+</td>
+</tr>
+<!-- Product Row 2 -->
+<tr class="group hover:bg-white/5 transition-colors">
+<td class="px-6 py-6">
+<div class="w-16 h-16 bg-surface-container-high border border-white/10 p-1">
+<div class="w-full h-full bg-cover bg-center" data-alt="An industrial horizontal chest freezer with a thick insulated lid and heavy-duty hinges. The exterior is finished in white enamel with a digital temperature control panel on the side. Photographed in a high-contrast industrial environment with cold blue ambient lighting. Professional catalog style image with sharp focus on mechanical details and build quality." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAu9xpQc4bdnm-PluLJT1A1sLN1hoG1b9_9W3oYbDoGbEgKaJM_3xLbRAIHr3vzlNjdPJhutBk_TZ2qcpMGROEm8q53madnhVpIm92TNrVW_CdyTnPg2X7bKZZh0Ou1lH5WaaybHymarVHd_0Zw5kr_OvT9rGrXroyKWgWFw6Z9yPEMt19OYUBPt6BEbJVWMOiiCl0W_60To8qUmRiIPgaldOvFOy-Pq3fWrgL2MniBFPShKfnwQ7Pc')"></div>
+</div>
+</td>
+<td class="px-6 py-6">
+<p class="font-body-md font-semibold text-on-surface">Congélateur Coffre Pro</p>
+<p class="font-label-mono text-xs text-primary/70">AF-CF500-XT</p>
+</td>
+<td class="px-6 py-6">
+<span class="inline-block px-3 py-1 bg-surface-container border-t border-primary/30 text-xs font-label-mono text-on-surface-variant">Congélation</span>
+</td>
+<td class="px-6 py-6 font-label-mono text-on-surface">
+                                    1.890,00 <span class="text-xs opacity-50">DT</span>
+</td>
+<td class="px-6 py-6">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-mono text-sm text-secondary">Limité</span>
+</div>
+</td>
+<td class="px-6 py-6 text-right">
+<div class="flex items-center justify-end gap-3 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined">edit</span></button>
+<button class="text-on-surface-variant hover:text-error"><span class="material-symbols-outlined">delete</span></button>
+</div>
+</td>
+</tr>
+<!-- Product Row 3 -->
+<tr class="group hover:bg-white/5 transition-colors">
+<td class="px-6 py-6">
+<div class="w-16 h-16 bg-surface-container-high border border-white/10 p-1">
+<div class="w-full h-full bg-cover bg-center" data-alt="A sleek glass-front refrigerated display case for a pastry shop or cafe. The unit features multiple glass shelves and internal LED strip lighting that illuminates the empty interior. The design is modern with black trim and a digital display panel. The lighting is crisp and cool, highlighting the transparency and premium feel of the glass panels." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA-VnQ-TclBRybu8Us2esLXrRyhMUGlT8er-cugkoCNeAMDmVwbn8vcUV1IonJiGvd8zV3FJcr_KOiuP96FCe87zaDVJRPID0NSceTVEte3zRI256ekw2c_sej225tpaYyIGV7jZqaB2r2ntAfd-W7YZ2JYnMIndMY0e92TRt62PWrrPTOQ7fHXMwrBGTBzSRv8kzFn7Bb7WS2Oz7-wYNMYbbh4p0Do91FvFH4_COD8E_YVu3TwP4q4')"></div>
+</div>
+</td>
+<td class="px-6 py-6">
+<p class="font-body-md font-semibold text-on-surface">Vitrine Réfrigérée Panoramique</p>
+<p class="font-label-mono text-xs text-primary/70">AF-VRP-120</p>
+</td>
+<td class="px-6 py-6">
+<span class="inline-block px-3 py-1 bg-surface-container border-t border-primary/30 text-xs font-label-mono text-on-surface-variant">Exposition</span>
+</td>
+<td class="px-6 py-6 font-label-mono text-on-surface">
+                                    3.120,00 <span class="text-xs opacity-50">DT</span>
+</td>
+<td class="px-6 py-6">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span class="font-label-mono text-sm text-error">Rupture</span>
+</div>
+</td>
+<td class="px-6 py-6 text-right">
+<div class="flex items-center justify-end gap-3 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined">edit</span></button>
+<button class="text-on-surface-variant hover:text-error"><span class="material-symbols-outlined">delete</span></button>
+</div>
+</td>
+</tr>
+<!-- Product Row 4 -->
+<tr class="group hover:bg-white/5 transition-colors">
+<td class="px-6 py-6">
+<div class="w-16 h-16 bg-surface-container-high border border-white/10 p-1">
+<div class="w-full h-full bg-cover bg-center" data-alt="A commercial grade stainless steel table with an integrated refrigerated prep area and cooling drawers underneath. The surface is polished and reflects a nearby soft light source. The background is a professional kitchen setting blurred out. The aesthetic is ultra-clean, technical and durable, representing professional industrial kitchen equipment." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBa8u6tfp8hAvlsXv3yfcB_M0niIbWMaGSFg8pE78fpGmL7dTT9ND4nzb68ZocJLPSGaMWXBuEv3V_uBXY9b0Q2l2yHSoVLp6PVaNK6yKQFz8AOMCzApAVztC0HOU22We2I8KSdubr8yHG8gS4cGBou_oSyR5rhUHZB0zSJohIo6d6GyQJCu_HuR0PhJxBnyguTLZlPLEOBgInYq6U476MuSgSRQ7iPJ2jtJhTj7TsBgeFU5iaHnbUJ')"></div>
+</div>
+</td>
+<td class="px-6 py-6">
+<p class="font-body-md font-semibold text-on-surface">Table de Préparation Froid</p>
+<p class="font-label-mono text-xs text-primary/70">AF-TP-3D</p>
+</td>
+<td class="px-6 py-6">
+<span class="inline-block px-3 py-1 bg-surface-container border-t border-primary/30 text-xs font-label-mono text-on-surface-variant">Préparation</span>
+</td>
+<td class="px-6 py-6 font-label-mono text-on-surface">
+                                    2.780,00 <span class="text-xs opacity-50">DT</span>
+</td>
+<td class="px-6 py-6">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+<span class="font-label-mono text-sm text-green-500">En stock</span>
+</div>
+</td>
+<td class="px-6 py-6 text-right">
+<div class="flex items-center justify-end gap-3 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined">edit</span></button>
+<button class="text-on-surface-variant hover:text-error"><span class="material-symbols-outlined">delete</span></button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-6 border-t border-white/10 flex items-center justify-between">
+<p class="font-label-mono text-xs text-on-surface-variant">AFFICHAGE 1-4 SUR 1,248 PRODUITS</p>
+<div class="flex gap-1">
+<button class="w-10 h-10 flex items-center justify-center bg-surface-container hover:text-primary transition-colors border border-white/5">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center bg-primary text-surface font-bold">1</button>
+<button class="w-10 h-10 flex items-center justify-center bg-surface-container hover:text-primary transition-colors border border-white/5">2</button>
+<button class="w-10 h-10 flex items-center justify-center bg-surface-container hover:text-primary transition-colors border border-white/5">3</button>
+<button class="w-10 h-10 flex items-center justify-center bg-surface-container hover:text-primary transition-colors border border-white/5">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer decoration (Thin Cyan Line) -->
+<div class="fixed bottom-0 left-0 w-full h-[2px] bg-primary/30 z-50"></div>
+<script>
+        // Micro-interactions and effects
+        document.addEventListener('DOMContentLoaded', () => {
+            const tableRows = document.querySelectorAll('tbody tr');
+            tableRows.forEach(row => {
+                row.addEventListener('mouseenter', () => {
+                    row.style.boxShadow = 'inset 4px 0 0 0 #57e0fd';
+                });
+                row.addEventListener('mouseleave', () => {
+                    row.style.boxShadow = 'none';
+                });
+            });
+
+            // Floating Label Logic for search or any future inputs
+            const inputs = document.querySelectorAll('input');
+            inputs.forEach(input => {
+                input.addEventListener('focus', () => {
+                    input.parentElement.classList.add('ring-2', 'ring-primary/20');
+                });
+                input.addEventListener('blur', () => {
+                    input.parentElement.classList.remove('ring-2', 'ring-primary/20');
+                });
+            });
+        });
+    </script>
+</body></html>

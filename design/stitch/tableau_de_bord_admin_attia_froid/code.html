@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ATTIA FROID | Industrial Control Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&amp;family=Inter:wght@400;500&amp;family=Space+Mono&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-low": "#1c1b1b",
+                      "on-tertiary": "#2f3131",
+                      "on-primary-container": "#004d5a",
+                      "on-surface-variant": "#bcc9cd",
+                      "surface-variant": "#353534",
+                      "surface-bright": "#3a3939",
+                      "on-secondary-fixed": "#201c00",
+                      "surface": "#131313",
+                      "error": "#ffb4ab",
+                      "outline-variant": "#3c494c",
+                      "surface-container": "#201f1f",
+                      "secondary-fixed-dim": "#dcc800",
+                      "primary": "#57e0fd",
+                      "on-secondary": "#373100",
+                      "secondary-container": "#e5d100",
+                      "primary-fixed": "#a8edff",
+                      "error-container": "#93000a",
+                      "secondary-fixed": "#fae527",
+                      "tertiary-fixed-dim": "#c6c6c7",
+                      "on-tertiary-fixed-variant": "#454747",
+                      "on-primary-fixed": "#001f26",
+                      "on-secondary-fixed-variant": "#4f4700",
+                      "on-surface": "#e5e2e1",
+                      "on-secondary-container": "#625900",
+                      "background": "#131313",
+                      "surface-container-high": "#2a2a2a",
+                      "on-tertiary-fixed": "#1a1c1c",
+                      "tertiary-fixed": "#e2e2e2",
+                      "surface-container-lowest": "#0e0e0e",
+                      "on-primary-fixed-variant": "#004e5b",
+                      "outline": "#869397",
+                      "tertiary-container": "#b3b4b4",
+                      "surface-container-highest": "#353534",
+                      "on-error-container": "#ffdad6",
+                      "secondary": "#ffed66",
+                      "on-error": "#690005",
+                      "inverse-on-surface": "#313030",
+                      "primary-fixed-dim": "#4cd7f4",
+                      "tertiary": "#cfcfd0",
+                      "surface-tint": "#4cd7f4",
+                      "inverse-surface": "#e5e2e1",
+                      "primary-container": "#2ec4e0",
+                      "on-background": "#e5e2e1",
+                      "surface-dim": "#131313",
+                      "on-primary": "#00363f",
+                      "inverse-primary": "#006879",
+                      "on-tertiary-container": "#444646"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "margin-desktop": "64px",
+                      "base": "8px",
+                      "gutter": "24px",
+                      "margin-mobile": "16px",
+                      "container-max": "1440px"
+              },
+              "fontFamily": {
+                      "body-md": ["Inter"],
+                      "display-lg-mobile": ["Montserrat"],
+                      "label-mono": ["Space Mono"],
+                      "display-lg": ["Montserrat"],
+                      "button-text": ["Montserrat"],
+                      "headline-md": ["Montserrat"],
+                      "body-lg": ["Inter"]
+              },
+              "fontSize": {
+                      "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                      "display-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "800"}],
+                      "label-mono": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "400"}],
+                      "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                      "button-text": ["14px", {"lineHeight": "1", "fontWeight": "600"}],
+                      "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                      "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(46, 196, 224, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .cyan-glow {
+            box-shadow: 0 0 15px rgba(46, 196, 224, 0.3);
+        }
+        .deep-frost-shadow {
+            box-shadow: 0 40px 40px rgba(0,0,0,0.3);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #131313;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #3c494c;
+            border-radius: 2px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #57e0fd;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-primary/30 selection:text-primary overflow-hidden">
+<!-- Top Navigation Bar -->
+<header class="bg-surface/80 backdrop-blur-xl border-b border-outline-variant/30 shadow-[0_40px_40px_rgba(0,0,0,0.3)] flex justify-between items-center w-full px-margin-desktop h-20 fixed top-0 z-50">
+<div class="flex items-center gap-base">
+<span class="font-display-lg text-headline-md tracking-tighter text-primary border-t-2 border-primary pt-1">ATTIA FROID</span>
+</div>
+<div class="flex items-center gap-gutter">
+<div class="hidden md:flex items-center bg-surface-container rounded-lg border border-outline-variant/30 px-4 py-2 w-64">
+<span class="material-symbols-outlined text-on-surface-variant mr-2" style="font-size: 20px;">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-label-mono text-on-surface w-full p-0" placeholder="Search assets..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<button class="relative text-on-surface-variant hover:text-white transition-colors active:scale-95 transition-transform">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute -top-1 -right-1 w-2 h-2 bg-secondary rounded-full"></span>
+</button>
+<button class="text-on-surface-variant hover:text-white transition-colors active:scale-95 transition-transform">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="flex items-center gap-3 pl-4 border-l border-outline-variant/30">
+<div class="text-right hidden lg:block">
+<p class="font-button-text text-button-text text-on-surface">Admin Profile</p>
+<p class="text-[10px] text-on-surface-variant font-label-mono">Superuser Access</p>
+</div>
+<div class="w-10 h-10 rounded-full border border-primary/30 bg-surface-container-high overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional close-up studio portrait of a technology administrator in a dark tech-focused environment. The lighting is dramatic with cyan rim lighting reflecting off a matte black background. The person looks confident and modern, perfectly fitting the high-end industrial tech aesthetic of the Attia Froid brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVMxIVzfkc41cvciLPFG9pOts3qW3dZWPwzOpY523I3M1AgbDcW5Nu9Yxo6V_LkENk9OtfthKZTFC_w0VL9bIEol7Ouo6i8Cg4qEyTqVlCS4hIiyrdsjQz9pXBENjKyNz702pEntwcCApltovzJO64DSa-Km2E1dvp_qcK1e-pLMfQD8FlTUCRVq6TzPGH2hTCSpbn3ra9QMLb_B1pADZrlUDhlmOOI53NTkubFuc3G-KEKcE3XkaM"/>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Sidebar Navigation -->
+<aside class="bg-surface-container-low border-r border-outline-variant/20 shadow-2xl shadow-black fixed left-0 top-0 h-screen flex flex-col py-base w-64 z-40 pt-24">
+<div class="px-6 mb-8 flex items-center gap-4">
+<img alt="Attia Froid Logo" class="w-10 h-10 object-contain" src="https://lh3.googleusercontent.com/aida/AP1WRLtbWGCKLl4Wq_eLbX4C38yoM0AsEkEhHcZI4cGTjdnjhbTXvFiNjyU77ERVtoNPnS8xgTVV0jQYC-IKN5RjDjvLkVa96Nd5sa6YhM7FNdgyVg4XZJF2adNy2Lw0C_MbUponVYgBpaDd64Jy7YEYGXq5uuqD077l-QX4fDUqWwGCf29hLAtN56GMXMps4aFZkQLo1XHDMeB3f9e_Wwc7VqDcwaudW1mcOdvz4G6HiV4KOQcL9ZkrG7-wvw"/>
+<div>
+<p class="font-display-lg text-primary text-[14px] font-bold leading-tight">Industrial Control</p>
+<p class="font-label-mono text-[10px] text-on-surface-variant opacity-70">Admin v2.4</p>
+</div>
+</div>
+<nav class="flex-1 px-4 space-y-1">
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-primary bg-primary/10 border-l-4 border-primary font-label-mono text-label-mono group transition-all" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant opacity-70 hover:bg-surface-variant hover:text-white hover:opacity-100 transition-all font-label-mono text-label-mono group" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span>Product Management</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant opacity-70 hover:bg-surface-variant hover:text-white hover:opacity-100 transition-all font-label-mono text-label-mono group" href="#">
+<span class="material-symbols-outlined">request_quote</span>
+<span>Quote Requests</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant opacity-70 hover:bg-surface-variant hover:text-white hover:opacity-100 transition-all font-label-mono text-label-mono group" href="#">
+<span class="material-symbols-outlined">local_shipping</span>
+<span>Stock Arrivals</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant opacity-70 hover:bg-surface-variant hover:text-white hover:opacity-100 transition-all font-label-mono text-label-mono group" href="#">
+<span class="material-symbols-outlined">rate_review</span>
+<span>Review Moderation</span>
+</a>
+</nav>
+<div class="px-4 py-6 border-t border-outline-variant/10 space-y-1">
+<a class="flex items-center gap-4 px-4 py-2 text-on-surface-variant opacity-70 hover:text-primary transition-colors font-label-mono text-[12px]" href="#">
+<span class="material-symbols-outlined text-[18px]">analytics</span>
+<span>System Status</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-2 text-on-surface-variant opacity-70 hover:text-error transition-colors font-label-mono text-[12px]" href="#">
+<span class="material-symbols-outlined text-[18px]">logout</span>
+<span>Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 pt-24 px-gutter lg:px-margin-desktop h-screen overflow-y-auto custom-scrollbar pb-24">
+<div class="max-w-container-max mx-auto">
+<!-- Dashboard Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+<div>
+<h1 class="font-display-lg text-display-lg text-on-surface">Control Center</h1>
+<p class="text-on-surface-variant mt-2 max-w-xl font-body-md">Real-time oversight of industrial refrigeration inventory and commercial service requests.</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="bg-transparent border border-primary text-primary px-6 py-2.5 font-button-text text-button-text rounded-sm hover:bg-primary/10 transition-colors uppercase tracking-widest active:translate-y-0.5">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">rate_review</span>
+                            Moderate Reviews
+                        </span>
+</button>
+<button class="bg-primary text-surface px-6 py-2.5 font-button-text text-button-text rounded-sm hover:bg-white transition-colors uppercase tracking-widest active:translate-y-0.5 cyan-glow">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                            Add Product
+                        </span>
+</button>
+</div>
+</div>
+<!-- KPI Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter mb-gutter">
+<!-- Total Products -->
+<div class="glass-card p-6 rounded-sm relative overflow-hidden group hover:border-primary/50 transition-all">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-primary">inventory</span>
+<div class="text-right">
+<span class="text-[10px] font-label-mono text-primary bg-primary/10 px-2 py-0.5 rounded-full">+12%</span>
+</div>
+</div>
+<p class="text-on-surface-variant text-[12px] uppercase tracking-tighter font-label-mono">Total Products</p>
+<h3 class="text-[32px] font-display-lg text-on-surface mt-1">1,248</h3>
+<div class="mt-4 h-8 flex items-end gap-1">
+<!-- Sparkline Simulation -->
+<div class="w-full bg-surface-container-high h-1 relative overflow-hidden">
+<div class="absolute inset-y-0 left-0 bg-primary w-3/4 opacity-50"></div>
+</div>
+</div>
+</div>
+<!-- Quote Requests -->
+<div class="glass-card p-6 rounded-sm relative overflow-hidden group hover:border-secondary/50 transition-all">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-secondary">request_quote</span>
+<div class="text-right">
+<span class="text-[10px] font-label-mono text-error bg-error/10 border border-error/30 px-2 py-0.5 rounded-sm uppercase">Urgent</span>
+</div>
+</div>
+<p class="text-on-surface-variant text-[12px] uppercase tracking-tighter font-label-mono">New Quotes</p>
+<h3 class="text-[32px] font-display-lg text-on-surface mt-1">42</h3>
+<p class="text-[11px] text-on-surface-variant mt-2 font-label-mono opacity-60">12 awaiting response &lt; 2h</p>
+</div>
+<!-- Pending Reviews -->
+<div class="glass-card p-6 rounded-sm relative overflow-hidden group hover:border-primary/50 transition-all">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-on-surface-variant">rate_review</span>
+</div>
+<p class="text-on-surface-variant text-[12px] uppercase tracking-tighter font-label-mono">Pending Reviews</p>
+<h3 class="text-[32px] font-display-lg text-on-surface mt-1">18</h3>
+<p class="text-[11px] text-on-surface-variant mt-2 font-label-mono opacity-60">Avg. sentiment: Positive</p>
+</div>
+<!-- Latest Arrivals -->
+<div class="glass-card p-6 rounded-sm relative overflow-hidden group hover:border-secondary/50 transition-all">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-secondary">local_shipping</span>
+</div>
+<p class="text-on-surface-variant text-[12px] uppercase tracking-tighter font-label-mono">Latest Arrivals</p>
+<h3 class="text-[32px] font-display-lg text-on-surface mt-1">05</h3>
+<p class="text-[11px] text-secondary mt-2 font-label-mono">Inbound today</p>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter items-start">
+<!-- Main Activity Feed (2 Columns) -->
+<div class="lg:col-span-2 space-y-gutter">
+<!-- Recent Activity Section -->
+<section class="bg-surface-container rounded-sm p-base border border-outline-variant/10 shadow-xl">
+<div class="flex items-center justify-between p-4 border-b border-outline-variant/10 mb-4">
+<h2 class="font-headline-md text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">history</span>
+                                Recent Activity
+                            </h2>
+<button class="text-[12px] font-label-mono text-primary hover:underline">Export Logs</button>
+</div>
+<div class="space-y-1">
+<!-- Activity Item 1 -->
+<div class="flex items-center justify-between p-4 bg-surface/40 hover:bg-surface-variant/30 transition-colors border-b border-outline-variant/5">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-sm bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" style="font-size: 20px;">description</span>
+</div>
+<div>
+<p class="font-body-md text-on-surface">New Quote Request <span class="text-primary font-label-mono">#DE-4092</span></p>
+<p class="text-[12px] text-on-surface-variant font-label-mono">Customer: Marriott Hotels Berlin • 14:32 PM</p>
+</div>
+</div>
+<span class="px-3 py-1 bg-surface-container-high rounded-full text-[10px] font-label-mono text-on-surface-variant">Pending</span>
+</div>
+<!-- Activity Item 2 -->
+<div class="flex items-center justify-between p-4 bg-surface/40 hover:bg-surface-variant/30 transition-colors border-b border-outline-variant/5">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-sm bg-secondary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary" style="font-size: 20px;">rate_review</span>
+</div>
+<div>
+<p class="font-body-md text-on-surface">Client Review to Moderate</p>
+<p class="text-[12px] text-on-surface-variant font-label-mono">Source: Google Maps • 12:15 PM</p>
+</div>
+</div>
+<span class="px-3 py-1 bg-surface-container-high rounded-full text-[10px] font-label-mono text-secondary">Review</span>
+</div>
+<!-- Activity Item 3 -->
+<div class="flex items-center justify-between p-4 bg-surface/40 hover:bg-surface-variant/30 transition-colors border-b border-outline-variant/5">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-sm bg-on-surface-variant/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant" style="font-size: 20px;">inventory_2</span>
+</div>
+<div>
+<p class="font-body-md text-on-surface">Inventory Update</p>
+<p class="text-[12px] text-on-surface-variant font-label-mono">Stock Level Adjustment: AF-450 Freezer • 11:45 AM</p>
+</div>
+</div>
+<span class="px-3 py-1 bg-surface-container-high rounded-full text-[10px] font-label-mono text-on-surface-variant">System</span>
+</div>
+<!-- Activity Item 4 -->
+<div class="flex items-center justify-between p-4 bg-surface/40 hover:bg-surface-variant/30 transition-colors">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-sm bg-error/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-error" style="font-size: 20px;">warning</span>
+</div>
+<div>
+<p class="font-body-md text-on-surface">Low Stock Alert</p>
+<p class="text-[12px] text-on-surface-variant font-label-mono">Modular Walk-ins (2 units remaining) • 09:30 AM</p>
+</div>
+</div>
+<span class="px-3 py-1 bg-error/20 rounded-full text-[10px] font-label-mono text-error">Critical</span>
+</div>
+</div>
+</section>
+<!-- Sector Shortcuts -->
+<section>
+<h2 class="font-headline-md text-on-surface mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">grid_view</span>
+                            Sector Shortcuts
+                        </h2>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+<a class="group block p-4 bg-surface-container-low border border-outline-variant/20 rounded-sm hover:border-primary transition-all text-center" href="#">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors text-[32px] mb-2">restaurant</span>
+<p class="text-[12px] font-label-mono uppercase tracking-widest text-on-surface-variant group-hover:text-on-surface">Cafeteria</p>
+</a>
+<a class="group block p-4 bg-surface-container-low border border-outline-variant/20 rounded-sm hover:border-primary transition-all text-center" href="#">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors text-[32px] mb-2">bakery_dining</span>
+<p class="text-[12px] font-label-mono uppercase tracking-widest text-on-surface-variant group-hover:text-on-surface">Bakery</p>
+</a>
+<a class="group block p-4 bg-surface-container-low border border-outline-variant/20 rounded-sm hover:border-primary transition-all text-center" href="#">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors text-[32px] mb-2">liquor</span>
+<p class="text-[12px] font-label-mono uppercase tracking-widest text-on-surface-variant group-hover:text-on-surface">Bar / Pub</p>
+</a>
+<a class="group block p-4 bg-surface-container-low border border-outline-variant/20 rounded-sm hover:border-primary transition-all text-center" href="#">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors text-[32px] mb-2">kitchen</span>
+<p class="text-[12px] font-label-mono uppercase tracking-widest text-on-surface-variant group-hover:text-on-surface">Industrial</p>
+</a>
+</div>
+</section>
+</div>
+<!-- Right Sidebar Content -->
+<div class="space-y-gutter">
+<!-- System Status -->
+<section class="glass-card p-6 rounded-sm">
+<div class="flex items-center justify-between mb-6">
+<h2 class="font-button-text text-on-surface uppercase tracking-widest flex items-center gap-2">
+<span class="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
+                                System Status
+                            </h2>
+<span class="text-[10px] font-label-mono text-on-surface-variant">Live</span>
+</div>
+<div class="space-y-6">
+<div>
+<div class="flex justify-between mb-2">
+<p class="text-[11px] font-label-mono text-on-surface-variant uppercase">Central Database</p>
+<p class="text-[11px] font-label-mono text-primary">Operational</p>
+</div>
+<div class="h-1.5 w-full bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[98%]"></div>
+</div>
+<p class="text-[10px] font-label-mono text-on-surface-variant mt-1 opacity-50">Latency: 24ms</p>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<p class="text-[11px] font-label-mono text-on-surface-variant uppercase">AWS Cloud Servers</p>
+<p class="text-[11px] font-label-mono text-primary">Normal</p>
+</div>
+<div class="h-1.5 w-full bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[82%]"></div>
+</div>
+<p class="text-[10px] font-label-mono text-on-surface-variant mt-1 opacity-50">Load: 3.2%</p>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<p class="text-[11px] font-label-mono text-on-surface-variant uppercase">Search Index</p>
+<p class="text-[11px] font-label-mono text-secondary">Indexing...</p>
+</div>
+<div class="h-1.5 w-full bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-[45%] transition-all duration-1000 ease-in-out"></div>
+</div>
+<p class="text-[10px] font-label-mono text-on-surface-variant mt-1 opacity-50">7,402 ops/sec</p>
+</div>
+</div>
+</section>
+<!-- Quick Help / Support -->
+<section class="bg-surface-container-high p-6 rounded-sm border border-primary/10">
+<h2 class="font-button-text text-on-surface uppercase tracking-widest mb-4">Admin Resources</h2>
+<ul class="space-y-3">
+<li>
+<a class="flex items-center gap-3 text-on-surface-variant hover:text-primary transition-all group" href="#">
+<span class="material-symbols-outlined text-[18px]">menu_book</span>
+<span class="text-[13px]">Operator Manual</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 text-on-surface-variant hover:text-primary transition-all group" href="#">
+<span class="material-symbols-outlined text-[18px]">support_agent</span>
+<span class="text-[13px]">Technical Support</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 text-on-surface-variant hover:text-primary transition-all group" href="#">
+<span class="material-symbols-outlined text-[18px]">security</span>
+<span class="text-[13px]">Permissions Console</span>
+</a>
+</li>
+</ul>
+</section>
+<!-- Data Visual Illustration -->
+<div class="rounded-sm overflow-hidden border border-outline-variant/10 h-48 relative group">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="A highly detailed 3D technical illustration of a professional commercial freezer unit. The aesthetic is industrial and high-end with sleek metallic surfaces and a cool cyan ambient glow. The background is dark and minimal with faint architectural blueprint lines, emphasizing engineering precision and technical durability." src="https://lh3.googleusercontent.com/aida-public/AB6AXuArjyqDkWwd0eSGZF-QeJrA-qnmHTgY9mrPomLsVw-gdFqt4nOj6lSF4oJtzedCF_I8nBBHBy61D52CY-quCHPsAWcLzMBqAUA4g03NrdYBNo0xyXqrnw18iyqHvH7WMIz1Gqja0CSvgmC-JZAOJGdTD4KyGcOLJY8c9LbI1oH0X1gMxk_S_9Tah1RM5kizFa6ujdqCcbC_0iAKVixWv7iHqd-47PBY5cQ8CDYIzHbzHvN6TsWL7CX1"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background to-transparent opacity-60"></div>
+<div class="absolute bottom-4 left-4">
+<p class="text-[10px] font-label-mono text-primary uppercase">Asset Spotlight</p>
+<p class="text-[14px] font-headline-md text-on-surface">V-Series Industrial</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Micro-interaction Scripts -->
+<script>
+        // Simple interactive effect for the search bar
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('border-primary', 'cyan-glow');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('border-primary', 'cyan-glow');
+        });
+
+        // Simulating some dynamic status changes
+        setInterval(() => {
+            const statusIndicator = document.querySelector('.animate-pulse');
+            if (statusIndicator) {
+                statusIndicator.classList.toggle('opacity-50');
+            }
+        }, 1500);
+    </script>
+</body></html>
