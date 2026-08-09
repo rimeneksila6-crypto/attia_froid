@@ -5,6 +5,8 @@ use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\QuoteRequestController;
 use App\Http\Controllers\Api\ReviewController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\ProductController;
+
 
 // ---- Public ----
 Route::get('/products', [ProductController::class, 'index']);
@@ -16,6 +18,9 @@ Route::get('/avis', [ReviewController::class, 'index']);
 Route::post('/avis', [ReviewController::class, 'store']);
 
 Route::post('/admin/login', [AuthController::class, 'login']);
+
+Route::get('/products', [ProductController::class, 'index']);
+Route::get('/products/{product}', [ProductController::class, 'show']);
 
 // ---- Admin (protégé par Sanctum) ----
 Route::middleware('auth:sanctum')->prefix('admin')->group(function () {
@@ -31,4 +36,10 @@ Route::middleware('auth:sanctum')->prefix('admin')->group(function () {
     Route::get('/avis', [ReviewController::class, 'indexAdmin']);
     Route::put('/avis/{review}/approve', [ReviewController::class, 'approve']);
     Route::delete('/avis/{review}', [ReviewController::class, 'destroy']);
+
+    Route::middleware('auth:sanctum')->prefix('admin')->group(function () {
+    Route::post('/products', [ProductController::class, 'store']);
+    Route::put('/products/{product}', [ProductController::class, 'update']);
+    Route::delete('/products/{product}', [ProductController::class, 'destroy']);
+});
 });

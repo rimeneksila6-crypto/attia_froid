@@ -1,22 +1,30 @@
+// app/Models/Product.php
 <?php
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    use HasFactory;
-
     protected $fillable = [
-        'reference', 'name', 'category', 'description', 'price',
-        'stock_status', 'is_new_arrival', 'images', 'specs',
+        'reference', 'nom', 'category_id', 'description',
+        'prix', 'stock', 'en_stock', 'nouveau', 'specs',
     ];
 
     protected $casts = [
-        'images' => 'array',
         'specs' => 'array',
-        'is_new_arrival' => 'boolean',
+        'en_stock' => 'boolean',
+        'nouveau' => 'boolean',
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function images()
+    {
+        return $this->hasMany(ProductImage::class)->orderBy('ordre');
+    }
 }
