@@ -1,4 +1,4 @@
-import { Link, NavLink } from 'react-router-dom'
+﻿import { Link, NavLink } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 
 const links = [
@@ -6,6 +6,7 @@ const links = [
   { to: '/catalogue', label: 'Catalogue' },
   { to: '/a-propos', label: 'Secteurs' },
   { to: '/contact', label: 'Contact' },
+  { to: '/avis', label: 'Avis' },
 ]
 
 export default function Navbar() {
@@ -59,3 +60,4 @@ export default function Navbar() {
     </header>
   )
 }
+

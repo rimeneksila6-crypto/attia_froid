@@ -1,24 +1,43 @@
-import { useState } from 'react'
-// import axios from '../lib/api' // TODO: brancher sur GET /api/avis et POST /api/avis
-
-const initialReviews = [
-  { id: 1, name: 'Jean Dupont', role: 'Directeur, Grand Hôtel', rating: 5, comment: "Une excellence technique constante. Installation propre, mise en service rapide." },
-  { id: 2, name: 'Marie Lambert', role: 'Chef, Le Gourmet', rating: 5, comment: "Un accompagnement irréprochable de projet, jusqu'à la mise en service." },
-  { id: 3, name: 'Ahmed K.', role: 'Hôtel Regency Hammamet', rating: 4, comment: "Installation rapide et efficace, quelques ajustements mineurs en post-livraison." },
-]
+﻿import { useState, useEffect } from 'react'
+import api from '../lib/api'
 
 export default function Reviews() {
-  const [reviews, setReviews] = useState(initialReviews)
+  const [reviews, setReviews] = useState([])
+  const [loading, setLoading] = useState(true)
   const [form, setForm] = useState({ name: '', rating: 5, comment: '' })
   const [submitted, setSubmitted] = useState(false)
+  const [error, setError] = useState('')
 
-  const average = (reviews.reduce((s, r) => s + r.rating, 0) / reviews.length).toFixed(1)
+  useEffect(() => {
+    fetchReviews()
+  }, [])
+
+  async function fetchReviews() {
+    setLoading(true)
+    try {
+      const res = await api.get('/avis')
+      setReviews(res.data.data)
+    } catch (err) {
+      setError('Erreur lors du chargement des avis.')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const average = reviews.length
+    ? (reviews.reduce((s, r) => s + r.rating, 0) / reviews.length).toFixed(1)
+    : '0.0'
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    // await axios.post('/avis', form) // passera en attente de modération côté admin
-    setSubmitted(true)
-    setForm({ name: '', rating: 5, comment: '' })
+    setError('')
+    try {
+      await api.post('/avis', form)
+      setSubmitted(true)
+      setForm({ name: '', rating: 5, comment: '' })
+    } catch (err) {
+      setError("Une erreur est survenue. Merci de reessayer.")
+    }
   }
 
   return (
@@ -28,23 +47,29 @@ export default function Reviews() {
       <div className="flex items-center gap-3 mb-10">
         <span className="font-display font-extrabold text-3xl">{average}</span>
         <div>
-          <div className="text-secondary text-sm">{'★'.repeat(Math.round(average))}{'☆'.repeat(5 - Math.round(average))}</div>
+          <div className="text-secondary text-sm">{"\u2605".repeat(Math.round(average))}{"\u2606".repeat(5 - Math.round(average))}</div>
           <p className="text-xs text-on-surface-variant">{reviews.length} avis</p>
         </div>
       </div>
 
-      <div className="space-y-4 mb-12">
-        {reviews.map((r) => (
-          <div key={r.id} className="rounded-lg border border-white/10 bg-surface-container-low p-5">
-            <div className="flex items-center justify-between mb-2">
-              <p className="font-display font-semibold text-sm">{r.name}</p>
-              <span className="text-secondary text-xs">{'★'.repeat(r.rating)}{'☆'.repeat(5 - r.rating)}</span>
+      {loading ? (
+        <p className="text-sm text-on-surface-variant mb-12">Chargement...</p>
+      ) : (
+        <div className="space-y-4 mb-12">
+          {reviews.length === 0 && (
+            <p className="text-sm text-on-surface-variant">Aucun avis pour le moment.</p>
+          )}
+          {reviews.map((r) => (
+            <div key={r.id} className="rounded-lg border border-white/10 bg-surface-container-low p-5">
+              <div className="flex items-center justify-between mb-2">
+                <p className="font-display font-semibold text-sm">{r.name}</p>
+                <span className="text-secondary text-xs">{"\u2605".repeat(r.rating)}{"\u2606".repeat(5 - r.rating)}</span>
+              </div>
+              <p className="text-sm text-on-surface-variant leading-relaxed">"{r.comment}"</p>
             </div>
-            <p className="text-[11px] text-on-surface-variant mb-2">{r.role}</p>
-            <p className="text-sm text-on-surface-variant leading-relaxed">"{r.comment}"</p>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
 
       <div className="rounded-lg border border-white/10 bg-surface-container-low p-6">
         <h2 className="font-display font-semibold text-sm mb-4">Laisser un avis</h2>
@@ -52,7 +77,7 @@ export default function Reviews() {
         {submitted ? (
           <p className="text-sm text-success flex items-center gap-2">
             <span className="material-symbols-outlined text-[18px]">check_circle</span>
-            Merci ! Votre avis sera publié après modération.
+            Merci ! Votre avis sera publie apres moderation.
           </p>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -73,9 +98,9 @@ export default function Reviews() {
                     type="button"
                     key={n}
                     onClick={() => setForm({ ...form, rating: n })}
-                    className={`text-xl ${n <= form.rating ? 'text-secondary' : 'text-outline-variant'}`}
+                    className={`text-xl ${n <= form.rating ? "text-secondary" : "text-outline-variant"}`}
                   >
-                    ★
+                    {"\u2605"}
                   </button>
                 ))}
               </div>
@@ -90,6 +115,7 @@ export default function Reviews() {
                 className="w-full bg-surface-container border border-outline-variant rounded px-3 py-2.5 text-sm focus:border-primary-container focus:outline-none resize-none"
               />
             </div>
+            {error && <p className="text-xs text-error">{error}</p>}
             <button type="submit" className="btn-primary">Publier mon avis</button>
           </form>
         )}
