@@ -8,75 +8,87 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    // GET /api/products?search=&category=&in_stock=1
+    // GET /api/products (public, avec recherche/filtre)
     public function index(Request $request)
     {
-        $query = Product::query();
+        $query = Product::with(['category', 'images']);
 
-        if ($search = $request->query('search')) {
+        if ($request->filled('q')) {
+            $search = $request->q;
             $query->where(function ($q) use ($search) {
-                $q->where('name', 'like', "%{$search}%")
+                $q->where('nom', 'like', "%{$search}%")
                   ->orWhere('reference', 'like', "%{$search}%");
             });
         }
 
-        if ($category = $request->query('category')) {
-            $query->where('category', $category);
+        if ($request->filled('category_id')) {
+            $query->where('category_id', $request->category_id);
         }
 
-        if ($request->boolean('in_stock')) {
-            $query->whereIn('stock_status', ['disponible', 'limite']);
+        if ($request->filled('en_stock')) {
+            $query->where('en_stock', $request->boolean('en_stock'));
         }
 
         return $query->latest()->paginate(12);
     }
 
+    // GET /api/products/{id}
     public function show(Product $product)
     {
-        return $product;
+        return $product->load(['category', 'images']);
     }
 
-    // Admin only (protected by auth:sanctum in routes/api.php)
+    // POST /api/admin/products
     public function store(Request $request)
     {
         $data = $request->validate([
-            'reference' => 'required|string|unique:products',
-            'name' => 'required|string',
-            'category' => 'required|in:cafeteria,fast_food,boulangerie,hotellerie',
+            'reference' => 'required|string|unique:products,reference',
+            'nom' => 'required|string',
+            'category_id' => 'required|exists:categories,id',
             'description' => 'nullable|string',
-            'price' => 'nullable|numeric',
-            'stock_status' => 'required|in:disponible,limite,rupture,sur_commande',
-            'is_new_arrival' => 'boolean',
-            'images' => 'nullable|array',
+            'prix' => 'nullable|numeric',
+            'stock' => 'nullable|integer',
+            'en_stock' => 'boolean',
+            'nouveau' => 'boolean',
             'specs' => 'nullable|array',
         ]);
 
-        return Product::create($data);
+        $product = Product::create($data);
+
+        return response()->json($product, 201);
     }
 
+    // PUT /api/admin/products/{id}
     public function update(Request $request, Product $product)
     {
         $data = $request->validate([
-            'reference' => 'sometimes|string|unique:products,reference,' . $product->id,
-            'name' => 'sometimes|string',
-            'category' => 'sometimes|in:cafeteria,fast_food,boulangerie,hotellerie',
+            'reference' => 'required|string|unique:products,reference,' . $product->id,
+            'nom' => 'required|string',
+            'category_id' => 'required|exists:categories,id',
             'description' => 'nullable|string',
-            'price' => 'nullable|numeric',
-            'stock_status' => 'sometimes|in:disponible,limite,rupture,sur_commande',
-            'is_new_arrival' => 'boolean',
-            'images' => 'nullable|array',
+            'prix' => 'nullable|numeric',
+            'stock' => 'nullable|integer',
+            'en_stock' => 'boolean',
+            'nouveau' => 'boolean',
             'specs' => 'nullable|array',
         ]);
 
         $product->update($data);
 
-        return $product;
+        return response()->json($product);
     }
 
+    // DELETE /api/admin/products/{id}
     public function destroy(Product $product)
     {
         $product->delete();
+        return response()->json(['message' => 'Produit supprime']);
+    }
 
-        return response()->noContent();
+    // PUT /api/admin/products/{id}/toggle-nouveau
+    public function toggleNouveau(Product $product)
+    {
+        $product->update(['nouveau' => !$product->nouveau]);
+        return response()->json($product);
     }
 }

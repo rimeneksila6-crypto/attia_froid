@@ -1,4 +1,3 @@
-// app/Models/Category.php
 <?php
 
 namespace App\Models;

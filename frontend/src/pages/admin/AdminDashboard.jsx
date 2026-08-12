@@ -84,10 +84,6 @@ export default function AdminDashboard() {
           </p>
         </div>
         <div className="flex gap-2">
-          <button className="btn-primary flex items-center gap-1.5 text-xs !px-4 !py-2">
-            <span className="material-symbols-outlined text-[16px]">add</span>
-            Ajouter un produit
-          </button>
           <button className="btn-secondary flex items-center gap-1.5 text-xs !px-4 !py-2">
             <span className="material-symbols-outlined text-[16px]">rate_review</span>
             Modérer Avis

@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+﻿import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import PublicLayout from './layouts/PublicLayout.jsx'
 import AdminLayout from './layouts/AdminLayout.jsx'
 
@@ -17,6 +17,14 @@ import AdminArrivals from './pages/admin/AdminArrivals.jsx'
 import AdminQuotes from './pages/admin/AdminQuotes.jsx'
 import AdminReviews from './pages/admin/AdminReviews.jsx'
 import AdminSettings from './pages/admin/AdminSettings.jsx'
+
+import GestionProduits from "./components/admin/GestionProduits";
+
+import GestionArrivages from "./components/admin/GestionArrivages";
+
+
+
+
 
 export default function App() {
   return (
@@ -37,13 +45,13 @@ export default function App() {
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<AdminDashboard />} />
-          <Route path="produits" element={<AdminProducts />} />
-          <Route path="arrivages" element={<AdminArrivals />} />
+          <Route path="produits" element={<GestionProduits />} />
+          <Route path="arrivages" element={<GestionArrivages />} />
           <Route path="devis" element={<AdminQuotes />} />
           <Route path="avis" element={<AdminReviews />} />
-          <Route path="parametres" element={<AdminSettings />} />
-        </Route>
+          <Route path="parametres" element={<AdminSettings />} />        </Route>
       </Routes>
     </BrowserRouter>
   )
 }
+
