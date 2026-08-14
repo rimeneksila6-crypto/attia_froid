@@ -1,9 +1,10 @@
-﻿<?php
+<?php
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\QuoteRequestController;
 use App\Http\Controllers\Api\ReviewController;
+use App\Http\Controllers\Api\SettingController;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +18,7 @@ Route::post("/admin/login", [AuthController::class, "login"]);
 Route::get("/categories", function () {
     return Category::all();
 });
+Route::get("/settings", [SettingController::class, "show"]);
 
 // ---- Admin (protege par Sanctum) ----
 Route::middleware("auth:sanctum")->prefix("admin")->group(function () {
@@ -30,4 +32,7 @@ Route::middleware("auth:sanctum")->prefix("admin")->group(function () {
     Route::get("/avis", [ReviewController::class, "indexAdmin"]);
     Route::put("/avis/{review}/approve", [ReviewController::class, "approve"]);
     Route::delete("/avis/{review}", [ReviewController::class, "destroy"]);
+    Route::get("/settings", [SettingController::class, "show"]);
+    Route::put("/settings", [SettingController::class, "update"]);
 });
+

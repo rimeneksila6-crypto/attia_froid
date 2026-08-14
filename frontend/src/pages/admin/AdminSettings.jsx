@@ -1,30 +1,58 @@
-import { useState } from 'react'
-// import axios from '../../lib/api' // TODO: brancher sur GET/PUT /api/admin/settings
+import { useState, useEffect } from 'react'
+import api from '../../lib/api'
 
 export default function AdminSettings() {
   const [form, setForm] = useState({
-    phone: '55 836 100',
-    email: 'attia_froid@hotmail.com',
-    address: 'Av Ali Belhouane, KÃ©libia, Tunisie',
-    hoursWeek: '08:00 - 18:00',
-    hoursSat: '08:00 - 13:00',
-    hoursSun: 'FermÃ©',
-    instagram: 'instagram.com/froidattia',
+    phone: '',
+    email: '',
+    address: '',
+    hoursWeek: '',
+    hoursSat: '',
+    hoursSun: '',
+    instagram: '',
   })
   const [saved, setSaved] = useState(false)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    api.get('/admin/settings').then((res) => {
+      const d = res.data
+      setForm({
+        phone: d.phone || '',
+        email: d.email || '',
+        address: d.address || '',
+        hoursWeek: d.hours_week || '',
+        hoursSat: d.hours_sat || '',
+        hoursSun: d.hours_sun || '',
+        instagram: d.instagram || '',
+      })
+      setLoading(false)
+    })
+  }, [])
 
   const handleSave = (e) => {
     e.preventDefault()
-    // TODO: axios.put('/admin/settings', form)
-    setSaved(true)
-    setTimeout(() => setSaved(false), 3000)
+    api.put('/admin/settings', {
+      phone: form.phone,
+      email: form.email,
+      address: form.address,
+      hours_week: form.hoursWeek,
+      hours_sat: form.hoursSat,
+      hours_sun: form.hoursSun,
+      instagram: form.instagram,
+    }).then(() => {
+      setSaved(true)
+      setTimeout(() => setSaved(false), 3000)
+    })
   }
+
+  if (loading) return <div className="p-6">Chargement...</div>
 
   return (
     <div className="p-6 md:p-8 max-w-2xl">
-      <h1 className="font-display font-bold text-2xl mb-1">ParamÃ¨tres</h1>
+      <h1 className="font-display font-bold text-2xl mb-1">Paramètres</h1>
       <p className="text-xs text-on-surface-variant mb-8">
-        Informations affichÃ©es sur le site public.
+        Informations affichées sur le site public.
       </p>
 
       <form onSubmit={handleSave} className="space-y-6">
@@ -35,7 +63,7 @@ export default function AdminSettings() {
           </h2>
           <div className="space-y-3">
             <div>
-              <label className="block text-[11px] text-on-surface-variant mb-1">TÃ©lÃ©phone</label>
+              <label className="block text-[11px] text-on-surface-variant mb-1">Téléphone</label>
               <input
                 value={form.phone}
                 onChange={(e) => setForm({ ...form, phone: e.target.value })}
@@ -51,7 +79,7 @@ export default function AdminSettings() {
               />
             </div>
             <div>
-              <label className="block text-[11px] text-on-surface-variant mb-1">Adresse (KÃ©libia)</label>
+              <label className="block text-[11px] text-on-surface-variant mb-1">Adresse (Kélibia)</label>
               <input
                 value={form.address}
                 onChange={(e) => setForm({ ...form, address: e.target.value })}
@@ -97,7 +125,7 @@ export default function AdminSettings() {
         <div className="rounded-lg border border-white/10 bg-surface-container-low p-6">
           <h2 className="font-display font-semibold text-sm mb-4 flex items-center gap-2">
             <span className="material-symbols-outlined text-[18px] text-primary-container">share</span>
-            PrÃ©sence digitale
+            Présence digitale
           </h2>
           <div>
             <label className="block text-[11px] text-on-surface-variant mb-1">Instagram</label>
@@ -117,7 +145,7 @@ export default function AdminSettings() {
           {saved && (
             <span className="text-xs text-success flex items-center gap-1">
               <span className="material-symbols-outlined text-[16px]">check_circle</span>
-              ParamÃ¨tres mis Ã  jour
+              Paramètres mis à jour
             </span>
           )}
         </div>

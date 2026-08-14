@@ -1,22 +1,23 @@
-import { Link } from 'react-router-dom'
+﻿import { Link } from 'react-router-dom'
+import ShowroomGallery from '../components/ShowroomGallery'
 
 const sectors = [
-  { icon: 'coffee', title: 'Cafétéria', desc: "Comptoirs réfrigérés et vitrines d'exposition haute visibilité." },
-  { icon: 'fastfood', title: 'Fast-food', desc: 'Stockage intensif et accès rapide pour flux tendus.' },
-  { icon: 'bakery_dining', title: 'Boulangerie', desc: "Contrôle précis de l'hygrométrie et du froid positif." },
-  { icon: 'hotel', title: 'Hôtellerie', desc: 'Solutions intégrées pour cuisines centrales et buffets.' },
+  { icon: 'coffee', title: 'CafÃ©tÃ©ria', desc: "Comptoirs rÃ©frigÃ©rÃ©s et vitrines d'exposition haute visibilitÃ©." },
+  { icon: 'fastfood', title: 'Fast-food', desc: 'Stockage intensif et accÃ¨s rapide pour flux tendus.' },
+  { icon: 'bakery_dining', title: 'Boulangerie', desc: "ContrÃ´le prÃ©cis de l'hygromÃ©trie et du froid positif." },
+  { icon: 'hotel', title: 'HÃ´tellerie', desc: 'Solutions intÃ©grÃ©es pour cuisines centrales et buffets.' },
 ]
 
 const featured = [
-  { ref: 'AF-900X', name: 'Armoire Positive Inox', price: '2 400,00 € HT', status: 'Disponible en stock', statusColor: 'text-success' },
-  { ref: 'AF-GLASS-V', name: 'Vitrine Murale Ventilée', price: '3 150,00 € HT', status: 'Stock limité', statusColor: 'text-secondary' },
+  { ref: 'AF-900X', name: 'Armoire Positive Inox', price: '2 400,00 â‚¬ HT', status: 'Disponible en stock', statusColor: 'text-success' },
+  { ref: 'AF-GLASS-V', name: 'Vitrine Murale VentilÃ©e', price: '3 150,00 â‚¬ HT', status: 'Stock limitÃ©', statusColor: 'text-secondary' },
   { ref: 'AF-CUSTOM', name: 'Chambre Froide Modulaire', price: 'Sur devis uniquement', status: 'Fabrication sur mesure', statusColor: 'text-primary-container' },
-  { ref: 'AF-POWER-X', name: 'Groupe Frigorifique Extérieur', price: '1 890,00 € HT', status: 'Disponible en stock', statusColor: 'text-success' },
+  { ref: 'AF-POWER-X', name: 'Groupe Frigorifique ExtÃ©rieur', price: '1 890,00 â‚¬ HT', status: 'Disponible en stock', statusColor: 'text-success' },
 ]
 
 const testimonials = [
-  { name: 'Jean Dupont', role: 'Directeur, Grand Hôtel', quote: 'Une excellence technique constante. Installation propre, mise en service rapide.' },
-  { name: 'Marie Lambert', role: 'Chef, Le Gourmet', quote: 'Un accompagnement technique irréprochable de projet, jusqu\'à la mise en service.' },
+  { name: 'Jean Dupont', role: 'Directeur, Grand HÃ´tel', quote: 'Une excellence technique constante. Installation propre, mise en service rapide.' },
+  { name: 'Marie Lambert', role: 'Chef, Le Gourmet', quote: 'Un accompagnement technique irrÃ©prochable de projet, jusqu\'Ã  la mise en service.' },
 ]
 
 export default function Home() {
@@ -32,8 +33,8 @@ export default function Home() {
             Fabrication <span className="text-primary-container">sur Mesure</span>
           </h1>
           <p className="text-on-surface-variant text-base leading-relaxed max-w-md mb-8">
-            Conception et fabrication de systèmes de réfrigération haute
-            performance, adaptés aux besoins les plus exigeants.
+            Conception et fabrication de systÃ¨mes de rÃ©frigÃ©ration haute
+            performance, adaptÃ©s aux besoins les plus exigeants.
           </p>
           <div className="flex flex-wrap gap-3">
             <Link to="/catalogue" className="btn-primary">Voir le catalogue</Link>
@@ -45,7 +46,7 @@ export default function Home() {
             kitchen
           </span>
           <div className="absolute bottom-4 left-4 glass rounded px-4 py-2">
-            <p className="badge-mono text-primary-container">UNITÉ SÉRIE-K</p>
+            <p className="badge-mono text-primary-container">UNITÃ‰ SÃ‰RIE-K</p>
             <p className="text-sm font-display font-semibold">Performance Arctique</p>
           </div>
         </div>
@@ -54,7 +55,7 @@ export default function Home() {
       {/* Sectors */}
       <section className="max-w-[1440px] mx-auto px-4 md:px-margin-desktop py-12">
         <p className="badge-mono text-primary-container mb-2">EXPERTISE SECTORIELLE</p>
-        <h2 className="font-display font-bold text-2xl mb-8">Solutions par métier</h2>
+        <h2 className="font-display font-bold text-2xl mb-8">Solutions par mÃ©tier</h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {sectors.map((s) => (
             <div
@@ -70,7 +71,7 @@ export default function Home() {
                 to="/catalogue"
                 className="text-[11px] font-display font-semibold tracking-wide text-primary-container group-hover:underline"
               >
-                DÉCOUVRIR →
+                DÃ‰COUVRIR â†’
               </Link>
             </div>
           ))}
@@ -80,7 +81,7 @@ export default function Home() {
       {/* Featured products */}
       <section className="max-w-[1440px] mx-auto px-4 md:px-margin-desktop py-12">
         <div className="flex items-center justify-between mb-8">
-          <h2 className="font-display font-bold text-2xl">Équipements Phares</h2>
+          <h2 className="font-display font-bold text-2xl">Ã‰quipements Phares</h2>
           <Link to="/catalogue" className="text-xs text-primary-container hover:underline">
             Voir tout le catalogue
           </Link>
@@ -98,10 +99,10 @@ export default function Home() {
                 </span>
               </div>
               <div className="p-4">
-                <p className="font-mono text-[10px] text-on-surface-variant mb-1">RÉF: {p.ref}</p>
+                <p className="font-mono text-[10px] text-on-surface-variant mb-1">RÃ‰F: {p.ref}</p>
                 <p className="font-display font-semibold text-sm mb-1">{p.name}</p>
                 <p className="font-mono text-sm text-primary-container mb-2">{p.price}</p>
-                <p className={`text-[11px] ${p.statusColor}`}>● {p.status}</p>
+                <p className={`text-[11px] ${p.statusColor}`}>â— {p.status}</p>
               </div>
             </Link>
           ))}
@@ -128,7 +129,7 @@ export default function Home() {
           </div>
           <div className="flex flex-wrap gap-3">
             <span className="badge-mono border border-outline-variant flex items-center gap-1">
-              <span className="material-symbols-outlined text-sm">verified</span> CERTIFIÉ ISO 9001
+              <span className="material-symbols-outlined text-sm">verified</span> CERTIFIÃ‰ ISO 9001
             </span>
             <span className="badge-mono border border-outline-variant flex items-center gap-1">
               <span className="material-symbols-outlined text-sm">precision_manufacturing</span> FABRICATION LOCALE
@@ -143,7 +144,7 @@ export default function Home() {
         <div className="grid sm:grid-cols-2 gap-4">
           {testimonials.map((t) => (
             <div key={t.name} className="rounded-lg border border-white/10 bg-surface-container-low p-6">
-              <div className="text-secondary text-sm mb-3">★★★★★</div>
+              <div className="text-secondary text-sm mb-3">â˜…â˜…â˜…â˜…â˜…</div>
               <p className="text-sm text-on-surface-variant leading-relaxed mb-4">"{t.quote}"</p>
               <p className="font-display font-semibold text-sm">{t.name}</p>
               <p className="text-xs text-on-surface-variant">{t.role}</p>
@@ -152,14 +153,16 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Showroom */}
+      <ShowroomGallery />
       {/* CTA */}
       <section className="max-w-[1440px] mx-auto px-4 md:px-margin-desktop py-16">
         <div className="rounded-lg glass p-10 text-center">
           <h2 className="font-display font-bold text-2xl mb-3">
-            Prêt à optimiser votre chaîne du froid ?
+            PrÃªt Ã  optimiser votre chaÃ®ne du froid ?
           </h2>
           <p className="text-sm text-on-surface-variant mb-6 max-w-md mx-auto">
-            Nos ingénieurs sont à votre disposition pour une étude personnalisée.
+            Nos ingÃ©nieurs sont Ã  votre disposition pour une Ã©tude personnalisÃ©e.
           </p>
           <Link to="/devis" className="btn-primary">Contacter un expert</Link>
         </div>
@@ -167,3 +170,6 @@ export default function Home() {
     </div>
   )
 }
+
+
+
