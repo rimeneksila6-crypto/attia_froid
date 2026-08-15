@@ -36,7 +36,7 @@ export default function Quote() {
       })
       setSubmitted(true)
     } catch (err) {
-      setError("Une erreur est survenue. Merci de rÃ©essayer ou de nous appeler directement.")
+      setError("Une erreur est survenue. Merci de réessayer ou de nous appeler directement.")
     }
   }
 
@@ -46,9 +46,9 @@ export default function Quote() {
         <span className="material-symbols-outlined text-5xl text-success mb-4 block">
           check_circle
         </span>
-        <h1 className="font-display font-bold text-xl mb-2">Demande envoyÃ©e</h1>
+        <h1 className="font-display font-bold text-xl mb-2">Demande envoyée</h1>
         <p className="text-sm text-on-surface-variant">
-          Merci, votre demande de devis a bien Ã©tÃ© transmise. Notre Ã©quipe vous
+          Merci, votre demande de devis a bien été transmise. Notre équipe vous
           recontactera sous 24h.
         </p>
       </div>
@@ -64,7 +64,7 @@ export default function Quote() {
         Parlons de votre projet
       </h1>
       <p className="text-sm text-on-surface-variant mb-8">
-        Nos ingÃ©nieurs Ã©tudient votre besoin et vous rÃ©pondent sous 24h, sans engagement.
+        Nos ingénieurs étudient votre besoin et vous répondent sous 24h, sans engagement.
       </p>
 
       <form onSubmit={handleSubmit} className="space-y-4">
@@ -73,7 +73,7 @@ export default function Quote() {
             <span className="material-symbols-outlined text-[16px] text-primary-container">
               inventory_2
             </span>
-            Produit sÃ©lectionnÃ© : <span className="font-mono text-primary-container">{form.product}</span>
+            Produit sélectionné : <span className="font-mono text-primary-container">{form.product}</span>
           </div>
         )}
 
@@ -105,7 +105,7 @@ export default function Quote() {
         <div className="grid sm:grid-cols-2 gap-4">
           <div>
             <label className="block text-[11px] text-on-surface-variant mb-1">
-              TÃ©lÃ©phone *
+              Téléphone *
             </label>
             <input
               required
@@ -132,7 +132,7 @@ export default function Quote() {
 
         <div>
           <label className="block text-[11px] text-on-surface-variant mb-1">
-            QuantitÃ©
+            Quantité
           </label>
           <input
             type="number"
@@ -145,14 +145,14 @@ export default function Quote() {
 
         <div>
           <label className="block text-[11px] text-on-surface-variant mb-1">
-            DÃ©tails de votre projet
+            Détails de votre projet
           </label>
           <textarea
             rows={4}
             value={form.message}
             onChange={handleChange('message')}
             className="w-full bg-surface-container border border-outline-variant rounded px-3 py-2.5 text-sm focus:border-primary-container focus:outline-none resize-none"
-            placeholder="Contexte, contraintes techniques, dÃ©lai souhaitÃ©..."
+            placeholder="Contexte, contraintes techniques, délai souhaité..."
           />
         </div>
 
