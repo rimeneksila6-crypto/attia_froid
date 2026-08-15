@@ -1,12 +1,12 @@
 ﻿import { useState } from "react";
 
 const showroomImages = [
-  { id: 1, src: "https://placehold.co/600x450/1a2332/38bdf8?text=Showroom+1", caption: "Espace exposition — vitrines réfrigérées" },
-  { id: 2, src: "https://placehold.co/600x450/1a2332/facc15?text=Showroom+2", caption: "Zone équipements pâtisserie" },
-  { id: 3, src: "https://placehold.co/600x450/1a2332/38bdf8?text=Showroom+3", caption: "Installation cafétéria" },
-  { id: 4, src: "https://placehold.co/600x450/1a2332/facc15?text=Showroom+4", caption: "Matériel hôtellerie" },
-  { id: 5, src: "https://placehold.co/600x450/1a2332/38bdf8?text=Showroom+5", caption: "Chambre froide sur mesure" },
-  { id: 6, src: "https://placehold.co/600x450/1a2332/facc15?text=Showroom+6", caption: "Comptoir fast-food" },
+  { id: 1, src: "https://picsum.photos/seed/showroom-1/600/450", caption: "Espace exposition — vitrines réfrigérées" },
+  { id: 2, src: "https://picsum.photos/seed/showroom-2/600/450", caption: "Zone équipements pâtisserie" },
+  { id: 3, src: "https://picsum.photos/seed/showroom-3/600/450", caption: "Installation cafétéria" },
+  { id: 4, src: "https://picsum.photos/seed/showroom-4/600/450", caption: "Matériel hôtellerie" },
+  { id: 5, src: "https://picsum.photos/seed/showroom-5/600/450", caption: "Chambre froide sur mesure" },
+  { id: 6, src: "https://picsum.photos/seed/showroom-6/600/450", caption: "Comptoir fast-food" },
 ];
 
 export default function ShowroomGallery() {
