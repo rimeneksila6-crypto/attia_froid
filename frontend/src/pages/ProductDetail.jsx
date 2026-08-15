@@ -100,15 +100,13 @@ export default function ProductDetail() {
       <div className="grid md:grid-cols-2 gap-10 mb-16">
         {/* Gallery */}
         <div>
-          <div className="rounded-lg border border-white/10 bg-surface-container-low h-80 md:h-96 flex items-center justify-center mb-3">
-            <span className="material-symbols-outlined text-8xl text-on-surface-variant/20">
-              ac_unit
-            </span>
+          <div className="rounded-lg border border-white/10 bg-surface-container-low h-80 md:h-96 overflow-hidden mb-3">
+            <img src={`https://picsum.photos/seed/${product.ref}/800/600`} alt={product.name} className="w-full h-full object-cover" />
           </div>
           <div className="grid grid-cols-4 gap-2">
             {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="rounded border border-white/10 bg-surface-container-low h-16 flex items-center justify-center">
-                <span className="material-symbols-outlined text-lg text-on-surface-variant/20">image</span>
+              <div key={i} className="rounded border border-white/10 bg-surface-container-low h-16 overflow-hidden">
+                <img src={`https://picsum.photos/seed/${product.ref}-${i}/200/150`} alt="" className="w-full h-full object-cover" />
               </div>
             ))}
           </div>
@@ -167,8 +165,8 @@ export default function ProductDetail() {
                 key={p.ref}
                 className="rounded-lg border border-white/10 bg-surface-container-low overflow-hidden hover:border-primary-container transition"
               >
-                <div className="h-32 bg-surface-container flex items-center justify-center">
-                  <span className="material-symbols-outlined text-4xl text-on-surface-variant/20">ac_unit</span>
+                <div className="h-32 bg-surface-container overflow-hidden">
+                  <img src={`https://picsum.photos/seed/${p.ref}/400/300`} alt={p.name} className="w-full h-full object-cover" />
                 </div>
                 <div className="p-4">
                   <p className="font-mono text-[10px] text-on-surface-variant mb-1">Réf: {p.ref}</p>

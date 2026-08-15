@@ -42,9 +42,7 @@ export default function Home() {
           </div>
         </div>
         <div className="relative rounded-lg overflow-hidden border border-white/10 bg-surface-container-low h-72 md:h-96 flex items-center justify-center">
-          <span className="material-symbols-outlined text-8xl text-on-surface-variant/20">
-            kitchen
-          </span>
+          <img src="https://picsum.photos/seed/attia-hero/800/600" alt="Equipement de refrigeration professionnel" className="absolute inset-0 w-full h-full object-cover" />
           <div className="absolute bottom-4 left-4 glass rounded px-4 py-2">
             <p className="badge-mono text-primary-container">UNITÉ SÉRIE-K</p>
             <p className="text-sm font-display font-semibold">Performance Arctique</p>
@@ -93,10 +91,8 @@ export default function Home() {
               key={p.ref}
               className="rounded-lg border border-white/10 bg-surface-container-low overflow-hidden hover:border-primary-container hover:shadow-frost transition"
             >
-              <div className="h-32 bg-surface-container flex items-center justify-center">
-                <span className="material-symbols-outlined text-4xl text-on-surface-variant/20">
-                  ac_unit
-                </span>
+              <div className="h-32 bg-surface-container overflow-hidden">
+                <img src={`https://picsum.photos/seed/${p.ref}/400/300`} alt={p.name} className="w-full h-full object-cover" />
               </div>
               <div className="p-4">
                 <p className="font-mono text-[10px] text-on-surface-variant mb-1">RÉF: {p.ref}</p>

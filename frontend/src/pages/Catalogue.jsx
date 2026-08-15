@@ -96,10 +96,8 @@ export default function Catalogue() {
               key={p.ref}
               className="rounded-lg border border-white/10 bg-surface-container-low overflow-hidden hover:border-primary-container hover:shadow-frost transition"
             >
-              <div className="h-40 bg-surface-container flex items-center justify-center">
-                <span className="material-symbols-outlined text-5xl text-on-surface-variant/20">
-                  ac_unit
-                </span>
+              <div className="h-40 bg-surface-container overflow-hidden">
+                <img src={`https://picsum.photos/seed/${p.ref}/400/300`} alt={p.name} className="w-full h-full object-cover" />
               </div>
               <div className="p-4">
                 <div className="flex items-center justify-between mb-2">
