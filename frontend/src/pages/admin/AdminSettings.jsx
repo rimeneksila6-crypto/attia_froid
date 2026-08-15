@@ -50,9 +50,9 @@ export default function AdminSettings() {
 
   return (
     <div className="p-6 md:p-8 max-w-2xl">
-      <h1 className="font-display font-bold text-2xl mb-1">Paramètres</h1>
+      <h1 className="font-display font-bold text-2xl mb-1">ParamÃ©tres</h1>
       <p className="text-xs text-on-surface-variant mb-8">
-        Informations affichées sur le site public.
+        Informations affichÃ©es sur le site public.
       </p>
 
       <form onSubmit={handleSave} className="space-y-6">
@@ -63,7 +63,7 @@ export default function AdminSettings() {
           </h2>
           <div className="space-y-3">
             <div>
-              <label className="block text-[11px] text-on-surface-variant mb-1">Téléphone</label>
+              <label className="block text-[11px] text-on-surface-variant mb-1">TÃ©lÃ©phone</label>
               <input
                 value={form.phone}
                 onChange={(e) => setForm({ ...form, phone: e.target.value })}
@@ -79,7 +79,7 @@ export default function AdminSettings() {
               />
             </div>
             <div>
-              <label className="block text-[11px] text-on-surface-variant mb-1">Adresse (Kélibia)</label>
+              <label className="block text-[11px] text-on-surface-variant mb-1">Adresse (KÃ©libia)</label>
               <input
                 value={form.address}
                 onChange={(e) => setForm({ ...form, address: e.target.value })}
@@ -125,7 +125,7 @@ export default function AdminSettings() {
         <div className="rounded-lg border border-white/10 bg-surface-container-low p-6">
           <h2 className="font-display font-semibold text-sm mb-4 flex items-center gap-2">
             <span className="material-symbols-outlined text-[18px] text-primary-container">share</span>
-            Présence digitale
+            PrÃ©sence digitale
           </h2>
           <div>
             <label className="block text-[11px] text-on-surface-variant mb-1">Instagram</label>
@@ -145,7 +145,7 @@ export default function AdminSettings() {
           {saved && (
             <span className="text-xs text-success flex items-center gap-1">
               <span className="material-symbols-outlined text-[16px]">check_circle</span>
-              Paramètres mis à jour
+              ParamÃ©tres mis Ã  jour
             </span>
           )}
         </div>
