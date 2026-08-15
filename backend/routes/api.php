@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\ChatController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\QuoteRequestController;
 use App\Http\Controllers\Api\ReviewController;
@@ -19,6 +20,7 @@ Route::get("/categories", function () {
     return Category::all();
 });
 Route::get("/settings", [SettingController::class, "show"]);
+Route::post("/chat", [ChatController::class, "chat"]);
 
 // ---- Admin (protege par Sanctum) ----
 Route::middleware("auth:sanctum")->prefix("admin")->group(function () {
