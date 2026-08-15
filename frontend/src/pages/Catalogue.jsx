@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 // import axios from '../lib/api' // TODO: brancher sur GET /api/products?search=&category=&in_stock=
 
 const allProducts = [
@@ -20,9 +20,23 @@ const stockLabels = {
 }
 
 export default function Catalogue() {
+  const navigate = useNavigate()
   const [search, setSearch] = useState('')
   const [category, setCategory] = useState('')
   const [inStockOnly, setInStockOnly] = useState(false)
+  const [showSuggestions, setShowSuggestions] = useState(false)
+  const suggestions = useMemo(() => {
+    if (!search) return []
+    const q = search.toLowerCase()
+    return allProducts
+      .filter((p) => p.name.toLowerCase().includes(q) || p.ref.toLowerCase().includes(q))
+      .slice(0, 6)
+  }, [search])
+  const goToProduct = (ref) => {
+    setShowSuggestions(false)
+    setSearch('')
+    navigate(`/catalogue/${ref}`)
+  }
 
   const filtered = useMemo(() => {
     return allProducts.filter((p) => {
@@ -55,11 +69,30 @@ export default function Catalogue() {
           </span>
           <input
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={(e) => { setSearch(e.target.value); setShowSuggestions(true) }}
+            onFocus={() => setShowSuggestions(true)}
+            onBlur={() => setTimeout(() => setShowSuggestions(false), 150)}
             className="w-full bg-surface-container border border-outline-variant rounded pl-9 pr-3 py-2.5 text-xs focus:border-primary-container focus:outline-none"
             placeholder="Nom ou référence produit..."
           />
         </label>
+        {showSuggestions && suggestions.length > 0 && (
+          <div className="absolute left-0 right-0 top-full mt-2 z-20 rounded-lg border border-white/10 bg-surface-container-low shadow-lg overflow-hidden">
+            {suggestions.map((p) => (
+              <button
+                key={p.ref}
+                onClick={() => goToProduct(p.ref)}
+                className="w-full flex items-center justify-between gap-3 px-4 py-2.5 text-left text-xs hover:bg-surface-container transition"
+              >
+                <span>
+                  <span className="font-display font-medium">{p.name}</span>
+                  <span className="text-on-surface-variant ml-2 font-mono text-[10px]">{p.ref}</span>
+                </span>
+                <span className="font-mono text-primary-container">{p.price} DT</span>
+              </button>
+            ))}
+          </div>
+        )}
 
         <select
           value={category}
