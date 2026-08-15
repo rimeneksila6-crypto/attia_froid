@@ -26,22 +26,22 @@ export default function Home() {
       {/* Hero */}
       <section className="max-w-[1440px] mx-auto px-4 md:px-margin-desktop pt-16 pb-12 grid md:grid-cols-2 gap-10 items-center">
         <div>
-          <span className="badge-mono border border-primary-container/40 text-primary-container">
+          <span className="badge-mono border border-primary-container/40 text-primary-container animate-fade-up" style={{ animationDelay: '0ms' }}>
             EXCELLENCE TECHNIQUE
           </span>
-          <h1 className="font-display font-extrabold text-4xl md:text-5xl leading-tight mt-4 mb-4">
+          <h1 className="font-display font-extrabold text-4xl md:text-5xl leading-tight mt-4 mb-4 animate-fade-up" style={{ animationDelay: '100ms' }}>
             Fabrication <span className="text-primary-container">sur Mesure</span>
           </h1>
-          <p className="text-on-surface-variant text-base leading-relaxed max-w-md mb-8">
+          <p className="text-on-surface-variant text-base leading-relaxed max-w-md mb-8 animate-fade-up" style={{ animationDelay: '200ms' }}>
             Conception et fabrication de systèmes de réfrigération haute
             performance, adaptés aux besoins les plus exigeants.
           </p>
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-3 animate-fade-up" style={{ animationDelay: '300ms' }}>
             <Link to="/catalogue" className="btn-primary">Voir le catalogue</Link>
             <Link to="/devis" className="btn-secondary">Demander un devis</Link>
           </div>
         </div>
-        <div className="relative rounded-lg overflow-hidden border border-white/10 bg-surface-container-low h-72 md:h-96 flex items-center justify-center">
+        <div className="relative rounded-lg overflow-hidden border border-white/10 bg-surface-container-low h-72 md:h-96 flex items-center justify-center animate-fade-up" style={{ animationDelay: '150ms' }}>
           <img src="https://picsum.photos/seed/attia-hero/800/600" alt="Equipement de refrigeration professionnel" className="absolute inset-0 w-full h-full object-cover" />
           <div className="absolute bottom-4 left-4 glass rounded px-4 py-2">
             <p className="badge-mono text-primary-container">UNITÉ SÉRIE-K</p>
