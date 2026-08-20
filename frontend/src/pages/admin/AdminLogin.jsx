@@ -1,6 +1,7 @@
-import { useState } from "react"
+﻿import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import api from "../../lib/api"
+import logo from "../../assets/logo-pinguin.png"
 
 export default function AdminLogin() {
   const navigate = useNavigate()
@@ -32,9 +33,7 @@ export default function AdminLogin() {
     <div className="min-h-screen flex items-center justify-center bg-surface px-4">
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
-          <div className="w-12 h-12 rounded bg-primary-container flex items-center justify-center font-display font-extrabold text-on-primary-container text-base mx-auto mb-3">
-            AF
-          </div>
+          <img src={logo} alt="Attia Froid" className="w-12 h-12 rounded object-contain mx-auto mb-3" />
           <p className="font-display font-extrabold tracking-wide text-sm">ATTIA FROID</p>
           <p className="text-[11px] text-on-surface-variant">
             Systemes de Refrigeration Industrielle

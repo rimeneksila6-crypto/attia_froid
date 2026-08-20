@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+﻿import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import api from "../../lib/api"
 
@@ -24,8 +24,6 @@ export default function AdminTopbar() {
     <header className="h-16 border-b border-white/10 flex items-center justify-between px-6 bg-surface-container-lowest">
       <div className="flex items-center gap-6 text-xs text-on-surface-variant">
         <span className="text-primary-container font-display font-semibold">TABLEAU DE BORD</span>
-        <span className="hidden sm:inline">ANALYSES</span>
-        <span className="hidden sm:inline">LOGS</span>
       </div>
       <div className="flex items-center gap-3">
         <button

@@ -1,4 +1,5 @@
-import { NavLink } from 'react-router-dom'
+﻿import { NavLink } from 'react-router-dom'
+import logo from '../../assets/logo-pinguin.png'
 
 const items = [
   { to: '/admin', label: 'Tableau de bord', icon: 'dashboard', end: true },
@@ -13,9 +14,7 @@ export default function AdminSidebar() {
   return (
     <aside className="w-64 shrink-0 border-r border-white/10 bg-surface-container-lowest min-h-screen hidden md:block">
       <div className="p-6 flex items-center gap-2">
-        <div className="w-8 h-8 rounded bg-primary-container flex items-center justify-center font-display font-extrabold text-on-primary-container text-xs">
-          AF
-        </div>
+        <img src={logo} alt="Attia Froid" className="w-8 h-8 rounded object-contain" />
         <span className="font-display font-semibold text-sm">Admin</span>
       </div>
       <nav className="px-3 space-y-1">
