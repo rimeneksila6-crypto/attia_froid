@@ -29,7 +29,10 @@ class ProductController extends Controller
             $query->where('en_stock', $request->boolean('en_stock'));
         }
 
-        return $query->latest()->paginate(12);
+        $perPage = (int) $request->input('per_page', 12);
+        $perPage = max(1, min($perPage, 100));
+
+        return $query->latest()->paginate($perPage);
     }
 
     // GET /api/products/{id}

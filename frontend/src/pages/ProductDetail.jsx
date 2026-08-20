@@ -1,72 +1,6 @@
+import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
-// import axios from '../lib/api' // TODO: brancher sur GET /api/products/{ref}
-
-// Même jeu de données que Catalogue.jsx pour l'instant — à remplacer par l'API
-const allProducts = [
-  {
-    ref: 'AF-902-DX', name: 'Congélateur Arctic Double Porte', category: 'Réfrigération',
-    price: '2 450,00', stock: 'disponible',
-    description: "Congélateur professionnel double porte, conçu pour un usage intensif en cuisine industrielle. Isolation renforcée et régulation électronique précise.",
-    specs: [
-      { label: 'Dimensions', value: '140 x 80 x 200 cm' },
-      { label: 'Capacité', value: '1 200 L' },
-      { label: 'Plage de température', value: '-18°C à -22°C' },
-      { label: 'Alimentation', value: '220V / 50Hz' },
-      { label: 'Classe énergétique', value: 'A+' },
-    ],
-  },
-  {
-    ref: 'AF-V-400', name: 'Vitrine Panoramique Pâtisserie', category: 'Boulangerie',
-    price: '4 100,00', stock: 'limite',
-    description: "Vitrine réfrigérée panoramique pensée pour la mise en valeur des produits de pâtisserie, avec éclairage LED intégré.",
-    specs: [
-      { label: 'Dimensions', value: '200 x 90 x 130 cm' },
-      { label: 'Vitrage', value: 'Triple vitrage anti-buée' },
-      { label: 'Plage de température', value: '+2°C à +8°C' },
-      { label: 'Éclairage', value: 'LED basse consommation' },
-    ],
-  },
-  {
-    ref: 'SL-350-H', name: 'Trancheur Gravité Industriel', category: 'Boucherie',
-    price: '1 890,00', stock: 'rupture',
-    description: "Trancheur à gravité pour découpe précise en environnement professionnel de boucherie.",
-    specs: [
-      { label: 'Diamètre lame', value: '350 mm' },
-      { label: 'Épaisseur de coupe', value: '0 à 15 mm' },
-      { label: 'Alimentation', value: '220V / 50Hz' },
-    ],
-  },
-  {
-    ref: 'AF-CF-M1', name: 'Chambre Froide Modulaire V1', category: 'Hôtellerie',
-    price: '6 200,00', stock: 'disponible',
-    description: "Chambre froide modulaire assemblable sur mesure selon la configuration de votre cuisine.",
-    specs: [
-      { label: 'Volume', value: 'Sur mesure' },
-      { label: 'Panneaux', value: 'Isolation PU 80mm' },
-      { label: 'Groupe froid', value: 'Inclus' },
-    ],
-  },
-  {
-    ref: 'AF-TPB-01', name: 'Titan Professional Brewer', category: 'Cafétéria',
-    price: '8 450,00', stock: 'disponible',
-    description: "Machine à café professionnelle grand débit pour cafétérias à forte affluence.",
-    specs: [
-      { label: 'Débit', value: '120 tasses/heure' },
-      { label: 'Réservoir', value: '5 L' },
-      { label: 'Alimentation', value: '220V / 50Hz' },
-    ],
-  },
-  {
-    ref: 'AF-CVB-02', name: 'Convotherm Pro-Bake', category: 'Boulangerie',
-    price: '12 900,00', stock: 'limite',
-    description: "Four à convection professionnel avec régulation d'hygrométrie pour boulangeries et pâtisseries.",
-    specs: [
-      { label: 'Capacité', value: '10 niveaux GN 1/1' },
-      { label: 'Régulation', value: 'Hygrométrie programmable' },
-      { label: 'Alimentation', value: 'Triphasé 380V' },
-    ],
-  },
-]
+import api from '../lib/api'
 
 const stockLabels = {
   disponible: { label: 'EN STOCK', color: 'text-success bg-success/10' },
@@ -74,12 +8,60 @@ const stockLabels = {
   rupture: { label: 'EN RUPTURE', color: 'text-error bg-error/10' },
 }
 
+function getStockStatus(product) {
+  if (!product.en_stock) return 'rupture'
+  if (product.stock !== null && product.stock !== undefined && product.stock <= 3) return 'limite'
+  return 'disponible'
+}
+
+function productImage(product) {
+  return `/ProductsImages/${product.reference}.jfif`
+}
+
 export default function ProductDetail() {
   const { id } = useParams()
-  const product = allProducts.find((p) => p.ref === id)
-  const related = allProducts.filter((p) => p.category === product?.category && p.ref !== id).slice(0, 3)
+  const [product, setProduct] = useState(null)
+  const [related, setRelated] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [notFound, setNotFound] = useState(false)
 
-  if (!product) {
+  useEffect(() => {
+    let cancelled = false
+    async function load() {
+      setLoading(true)
+      setNotFound(false)
+      try {
+        const res = await api.get(`/products/${id}`)
+        if (cancelled) return
+        setProduct(res.data)
+
+        if (res.data.category_id) {
+          const relRes = await api.get('/products', {
+            params: { category_id: res.data.category_id, per_page: 100 },
+          })
+          if (cancelled) return
+          const others = (relRes.data.data || []).filter((p) => p.id !== res.data.id)
+          setRelated(others.slice(0, 3))
+        }
+      } catch (err) {
+        if (!cancelled) setNotFound(true)
+      } finally {
+        if (!cancelled) setLoading(false)
+      }
+    }
+    load()
+    return () => { cancelled = true }
+  }, [id])
+
+  if (loading) {
+    return (
+      <div className="max-w-[1440px] mx-auto px-4 md:px-margin-desktop py-16 text-center text-sm text-on-surface-variant">
+        Chargement...
+      </div>
+    )
+  }
+
+  if (notFound || !product) {
     return (
       <div className="max-w-[1440px] mx-auto px-4 md:px-margin-desktop py-16 text-center">
         <p className="text-sm text-on-surface-variant mb-4">Produit introuvable.</p>
@@ -89,6 +71,9 @@ export default function ProductDetail() {
       </div>
     )
   }
+
+  const status = getStockStatus(product)
+  const specs = Array.isArray(product.specs) ? product.specs : null
 
   return (
     <div className="max-w-[1440px] mx-auto px-4 md:px-margin-desktop py-10">
@@ -100,35 +85,31 @@ export default function ProductDetail() {
       <div className="grid md:grid-cols-2 gap-10 mb-16">
         {/* Gallery */}
         <div>
-          <div className="rounded-lg border border-white/10 bg-surface-container-low h-80 md:h-96 overflow-hidden mb-3">
-            <img src={`https://picsum.photos/seed/${product.ref}/800/600`} alt={product.name} className="w-full h-full object-cover" />
-          </div>
-          <div className="grid grid-cols-4 gap-2">
-            {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="rounded border border-white/10 bg-surface-container-low h-16 overflow-hidden">
-                <img src={`https://picsum.photos/seed/${product.ref}-${i}/200/150`} alt="" className="w-full h-full object-cover" />
-              </div>
-            ))}
+          <div className="rounded-lg border border-white/10 bg-surface-container-low h-80 md:h-96 overflow-hidden">
+            <img src={productImage(product)} alt={product.nom} className="w-full h-full object-cover" />
           </div>
         </div>
 
         {/* Info */}
         <div>
           <div className="flex items-center justify-between mb-2">
-            <p className="font-mono text-xs text-on-surface-variant">Réf: {product.ref}</p>
-            <span className={`text-[10px] px-2 py-0.5 rounded-full ${stockLabels[product.stock].color}`}>
-              {stockLabels[product.stock].label}
+            <p className="font-mono text-xs text-on-surface-variant">Réf: {product.reference}</p>
+            <span className={`text-[10px] px-2 py-0.5 rounded-full ${stockLabels[status].color}`}>
+              {stockLabels[status].label}
             </span>
           </div>
-          <p className="text-xs text-primary-container mb-1">{product.category}</p>
-          <h1 className="font-display font-bold text-2xl mb-4">{product.name}</h1>
-          <p className="font-mono text-2xl mb-6">{product.price} DT <span className="text-xs text-on-surface-variant">HT</span></p>
+          <p className="text-xs text-primary-container mb-1">{product.category?.nom}</p>
+          <h1 className="font-display font-bold text-2xl mb-4">{product.nom}</h1>
+          <p className="font-mono text-2xl mb-6">
+            {Number(product.prix).toLocaleString('fr-FR', { minimumFractionDigits: 2 })} DT{' '}
+            <span className="text-xs text-on-surface-variant">HT</span>
+          </p>
 
           <p className="text-sm text-on-surface-variant leading-relaxed mb-8">{product.description}</p>
 
           <Link
             to="/devis"
-            state={{ product: product.ref }}
+            state={{ product: product.reference }}
             className="btn-primary w-full text-center block mb-3"
           >
             Demander un devis pour ce produit
@@ -138,19 +119,21 @@ export default function ProductDetail() {
           </a>
 
           {/* Specs */}
-          <div className="mt-10">
-            <h2 className="font-display font-semibold text-sm mb-4">Spécifications techniques</h2>
-            <table className="w-full text-xs">
-              <tbody>
-                {product.specs.map((s) => (
-                  <tr key={s.label} className="border-b border-white/5">
-                    <td className="py-2.5 text-on-surface-variant">{s.label}</td>
-                    <td className="py-2.5 text-right font-mono">{s.value}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          {specs && specs.length > 0 && (
+            <div className="mt-10">
+              <h2 className="font-display font-semibold text-sm mb-4">Spécifications techniques</h2>
+              <table className="w-full text-xs">
+                <tbody>
+                  {specs.map((s) => (
+                    <tr key={s.label} className="border-b border-white/5">
+                      <td className="py-2.5 text-on-surface-variant">{s.label}</td>
+                      <td className="py-2.5 text-right font-mono">{s.value}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
         </div>
       </div>
 
@@ -161,17 +144,19 @@ export default function ProductDetail() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {related.map((p) => (
               <Link
-                to={`/catalogue/${p.ref}`}
-                key={p.ref}
+                to={`/catalogue/${p.id}`}
+                key={p.id}
                 className="rounded-lg border border-white/10 bg-surface-container-low overflow-hidden hover:border-primary-container transition"
               >
                 <div className="h-32 bg-surface-container overflow-hidden">
-                  <img src={`https://picsum.photos/seed/${p.ref}/400/300`} alt={p.name} className="w-full h-full object-cover" />
+                  <img src={productImage(p)} alt={p.nom} className="w-full h-full object-cover" />
                 </div>
                 <div className="p-4">
-                  <p className="font-mono text-[10px] text-on-surface-variant mb-1">Réf: {p.ref}</p>
-                  <p className="font-display font-semibold text-sm mb-2">{p.name}</p>
-                  <span className="font-mono text-sm">{p.price} DT</span>
+                  <p className="font-mono text-[10px] text-on-surface-variant mb-1">Réf: {p.reference}</p>
+                  <p className="font-display font-semibold text-sm mb-2">{p.nom}</p>
+                  <span className="font-mono text-sm">
+                    {Number(p.prix).toLocaleString('fr-FR', { minimumFractionDigits: 2 })} DT
+                  </span>
                 </div>
               </Link>
             ))}

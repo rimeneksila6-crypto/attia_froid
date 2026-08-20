@@ -1,5 +1,7 @@
-﻿import { Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import ShowroomGallery from '../components/ShowroomGallery'
+import api from '../lib/api'
 
 const sectors = [
   { icon: 'coffee', title: 'Cafétéria', desc: "Comptoirs réfrigérés et vitrines d'exposition haute visibilité." },
@@ -8,19 +10,42 @@ const sectors = [
   { icon: 'hotel', title: 'Hôtellerie', desc: 'Solutions intégrées pour cuisines centrales et buffets.' },
 ]
 
-const featured = [
-  { ref: 'AF-900X', name: 'Armoire Positive Inox', price: '2 400,00 € HT', status: 'Disponible en stock', statusColor: 'text-success' },
-  { ref: 'AF-GLASS-V', name: 'Vitrine Murale Ventilée', price: '3 150,00 € HT', status: 'Stock limité', statusColor: 'text-secondary' },
-  { ref: 'AF-CUSTOM', name: 'Chambre Froide Modulaire', price: 'Sur devis uniquement', status: 'Fabrication sur mesure', statusColor: 'text-primary-container' },
-  { ref: 'AF-POWER-X', name: 'Groupe Frigorifique Extérieur', price: '1 890,00 € HT', status: 'Disponible en stock', statusColor: 'text-success' },
-]
-
 const testimonials = [
   { name: 'Jean Dupont', role: 'Directeur, Grand Hôtel', quote: 'Une excellence technique constante. Installation propre, mise en service rapide.' },
   { name: 'Marie Lambert', role: 'Chef, Le Gourmet', quote: 'Un accompagnement technique irréprochable de projet, jusqu\'à la mise en service.' },
 ]
 
+const stockStatusText = {
+  disponible: { label: 'Disponible en stock', color: 'text-success' },
+  limite: { label: 'Stock limité', color: 'text-secondary' },
+  rupture: { label: 'En rupture', color: 'text-error' },
+}
+
+function getStockStatus(product) {
+  if (!product.en_stock) return 'rupture'
+  if (product.stock !== null && product.stock !== undefined && product.stock <= 3) return 'limite'
+  return 'disponible'
+}
+
+function productImage(product) {
+  return `/ProductsImages/${product.reference}.jfif`
+}
+
 export default function Home() {
+  const [featured, setFeatured] = useState([])
+
+  useEffect(() => {
+    async function load() {
+      try {
+        const res = await api.get('/products', { params: { per_page: 4 } })
+        setFeatured(res.data.data || [])
+      } catch (err) {
+        setFeatured([])
+      }
+    }
+    load()
+  }, [])
+
   return (
     <div>
       {/* Hero */}
@@ -42,7 +67,7 @@ export default function Home() {
           </div>
         </div>
         <div className="relative rounded-lg overflow-hidden border border-white/10 bg-surface-container-low h-72 md:h-96 flex items-center justify-center animate-fade-up" style={{ animationDelay: '150ms' }}>
-          <img src="https://picsum.photos/seed/attia-hero/800/600" alt="Equipement de refrigeration professionnel" className="absolute inset-0 w-full h-full object-cover" />
+          <img src="/ProductsImages/REF-001.jfif" alt="Equipement de refrigeration professionnel" className="absolute inset-0 w-full h-full object-cover" />
           <div className="absolute bottom-4 left-4 glass rounded px-4 py-2">
             <p className="badge-mono text-primary-container">UNITÉ SÉRIE-K</p>
             <p className="text-sm font-display font-semibold">Performance Arctique</p>
@@ -85,23 +110,29 @@ export default function Home() {
           </Link>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {featured.map((p) => (
-            <Link
-              to="/catalogue"
-              key={p.ref}
-              className="rounded-lg border border-white/10 bg-surface-container-low overflow-hidden hover:border-primary-container hover:shadow-frost transition"
-            >
-              <div className="h-32 bg-surface-container overflow-hidden">
-                <img src={`https://picsum.photos/seed/${p.ref}/400/300`} alt={p.name} className="w-full h-full object-cover" />
-              </div>
-              <div className="p-4">
-                <p className="font-mono text-[10px] text-on-surface-variant mb-1">RÉF: {p.ref}</p>
-                <p className="font-display font-semibold text-sm mb-1">{p.name}</p>
-                <p className="font-mono text-sm text-primary-container mb-2">{p.price}</p>
-                <p className={`text-[11px] ${p.statusColor}`}>● {p.status}</p>
-              </div>
-            </Link>
-          ))}
+          {featured.map((p) => {
+            const status = getStockStatus(p)
+            const statusInfo = stockStatusText[status]
+            return (
+              <Link
+                to={`/catalogue/${p.id}`}
+                key={p.id}
+                className="rounded-lg border border-white/10 bg-surface-container-low overflow-hidden hover:border-primary-container hover:shadow-frost transition"
+              >
+                <div className="h-32 bg-surface-container overflow-hidden">
+                  <img src={productImage(p)} alt={p.nom} className="w-full h-full object-cover" />
+                </div>
+                <div className="p-4">
+                  <p className="font-mono text-[10px] text-on-surface-variant mb-1">RÉF: {p.reference}</p>
+                  <p className="font-display font-semibold text-sm mb-1">{p.nom}</p>
+                  <p className="font-mono text-sm text-primary-container mb-2">
+                    {Number(p.prix).toLocaleString('fr-FR', { minimumFractionDigits: 2 })} DT
+                  </p>
+                  <p className={`text-[11px] ${statusInfo.color}`}>● {statusInfo.label}</p>
+                </div>
+              </Link>
+            )
+          })}
         </div>
       </section>
 
@@ -166,6 +197,3 @@ export default function Home() {
     </div>
   )
 }
-
-
-

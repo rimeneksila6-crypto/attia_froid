@@ -1,5 +1,6 @@
-﻿import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { useState, useEffect } from 'react'
+import logo from '../assets/logo-pinguin.png'
 
 const links = [
   { to: '/', label: 'Accueil' },
@@ -8,26 +9,20 @@ const links = [
   { to: '/contact', label: 'Contact' },
   { to: '/avis', label: 'Avis' },
 ]
-
 export default function Navbar() {
   const [dark, setDark] = useState(true)
-
   useEffect(() => {
     document.documentElement.classList.toggle('dark', dark)
   }, [dark])
-
   return (
     <header className="sticky top-0 z-50 glass border-b border-white/10">
       <div className="max-w-[1440px] mx-auto flex items-center justify-between px-4 md:px-margin-desktop py-4">
         <Link to="/" className="flex items-center gap-2">
-          <div className="w-9 h-9 rounded bg-primary-container flex items-center justify-center font-display font-extrabold text-on-primary-container text-sm">
-            AF
-          </div>
+          <img src={logo} alt="Attia Froid" className="w-9 h-9 rounded object-contain" />
           <span className="font-display font-extrabold tracking-wide text-sm md:text-base">
             ATTIA <span className="text-primary-container">FROID</span>
           </span>
         </Link>
-
         <nav className="hidden md:flex items-center gap-8 text-sm text-on-surface-variant">
           {links.map((l) => (
             <NavLink
@@ -41,7 +36,6 @@ export default function Navbar() {
             </NavLink>
           ))}
         </nav>
-
         <div className="flex items-center gap-3">
           <button
             onClick={() => setDark((d) => !d)}
@@ -60,4 +54,3 @@ export default function Navbar() {
     </header>
   )
 }
-

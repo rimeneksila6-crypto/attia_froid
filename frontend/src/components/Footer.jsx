@@ -1,11 +1,11 @@
+import logo from '../assets/logo-pinguin.png'
+
 export default function Footer() {
   return (
     <footer className="border-t border-white/10 bg-surface-container-lowest">
       <div className="max-w-[1440px] mx-auto px-4 md:px-margin-desktop py-12 grid grid-cols-2 md:grid-cols-4 gap-8">
         <div className="col-span-2 md:col-span-1">
-          <div className="w-9 h-9 rounded bg-primary-container flex items-center justify-center font-display font-extrabold text-on-primary-container text-sm mb-3">
-            AF
-          </div>
+          <img src={logo} alt="Attia Froid" className="w-9 h-9 rounded object-contain mb-3" />
           <p className="text-xs text-on-surface-variant leading-relaxed">
             Solutions de réfrigération haute performance pour les professionnels
             de l'agroalimentaire et de l'hôtellerie.
