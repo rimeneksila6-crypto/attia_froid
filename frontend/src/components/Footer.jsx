@@ -1,3 +1,4 @@
+﻿import { Link } from 'react-router-dom'
 import logo from '../assets/logo-pinguin.png'
 
 export default function Footer() {
@@ -7,8 +8,8 @@ export default function Footer() {
         <div className="col-span-2 md:col-span-1">
           <img src={logo} alt="Attia Froid" className="w-9 h-9 rounded object-contain mb-3" />
           <p className="text-xs text-on-surface-variant leading-relaxed">
-            Solutions de réfrigération haute performance pour les professionnels
-            de l'agroalimentaire et de l'hôtellerie.
+            Solutions de refrigeration haute performance pour les professionnels
+            de l'agroalimentaire et de l'hotellerie.
           </p>
         </div>
         <div>
@@ -16,10 +17,10 @@ export default function Footer() {
             SECTEURS
           </p>
           <ul className="space-y-2 text-xs text-on-surface-variant">
-            <li>Cafétéria</li>
+            <li>Cafeteria</li>
             <li>Fast-food</li>
             <li>Boulangerie</li>
-            <li>Hôtellerie</li>
+            <li>Hotellerie</li>
           </ul>
         </div>
         <div>
@@ -28,7 +29,7 @@ export default function Footer() {
           </p>
           <ul className="space-y-2 text-xs text-on-surface-variant">
             <li>Support technique</li>
-            <li>Pièces détachées</li>
+            <li>Pieces detachees</li>
             <li>Garantie</li>
           </ul>
         </div>
@@ -39,12 +40,20 @@ export default function Footer() {
           <ul className="space-y-2 text-xs text-on-surface-variant font-mono">
             <li>55 836 100</li>
             <li>attia_froid@hotmail.com</li>
-            <li>Av Ali Belhouane, Kélibia</li>
+            <li>Av Ali Belhouane, Kelibia</li>
           </ul>
         </div>
       </div>
-      <div className="border-t border-white/10 py-4 text-center text-[11px] text-on-surface-variant/70">
-        © {new Date().getFullYear()} Attia Froid, Kélibia, Tunisie.
+      <div className="border-t border-white/10 py-4 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-[11px] text-on-surface-variant/70">
+        <span>(c) {new Date().getFullYear()} Attia Froid, Kelibia, Tunisie.</span>
+        <span className="hidden sm:inline">|</span>
+        <Link to="/politique-confidentialite" className="hover:text-primary-container transition">
+          Politique de confidentialite
+        </Link>
+        <span className="hidden sm:inline">|</span>
+        <Link to="/conditions-utilisation" className="hover:text-primary-container transition">
+          Conditions d'utilisation
+        </Link>
       </div>
     </footer>
   )
